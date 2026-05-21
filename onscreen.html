@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>On Screen — Durva Dalal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C0800;--cream:#F5EDD6;--cream2:#EDE4C6;--pink:#E8195A;--yellow:#F0DC00;--green:#00B84C;--w:1160px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+#cd,#cr{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+#cd{width:8px;height:8px;background:var(--pink);transition:width .15s,height .15s;}
+#cr{width:32px;height:32px;border:1.5px solid rgba(232,25,90,.5);transition:width .2s,height .2s;}
+body.hov #cd{width:3px;height:3px;}body.hov #cr{width:48px;height:48px;border-color:var(--pink);}
+body.clk #cd{background:var(--yellow);}
+@media(hover:none){#cd,#cr{display:none;}body{cursor:auto;}}
+.mast{position:sticky;top:0;z-index:400;background:var(--ink);color:var(--cream);border-bottom:3px solid var(--cream);}
+.mast-inner{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;gap:16px;}
+.mast-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;color:var(--cream);flex-shrink:0;}
+.mast-logo span{color:var(--pink);}
+.mast-back{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,214,.4);display:flex;align-items:center;gap:6px;transition:color .2s;}
+.mast-back:hover{color:var(--yellow);}.mast-back::before{content:'←';}
+.mast-nav{display:flex;list-style:none;}
+.mast-nav a{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.4);padding:0 11px;height:52px;display:flex;align-items:center;border-left:1px solid rgba(245,237,214,.08);transition:color .2s;}
+.mast-nav a:hover,.mast-nav a.cur{color:var(--yellow);}
+.mast-nav li:last-child a{border-right:1px solid rgba(245,237,214,.08);}
+.theme-btn{font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;border-left:1px solid rgba(245,237,214,.1);color:rgba(245,237,214,.35);padding:0 14px;height:52px;cursor:none;transition:color .2s;display:none;}
+.theme-btn:hover{color:var(--yellow);}
+.burger{background:none;border:none;padding:6px;display:none;flex-direction:column;gap:5px;cursor:none;}
+.burger span{display:block;width:20px;height:1.5px;background:var(--cream);transition:all .3s;}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+.fmenu{display:none;position:fixed;inset:0;z-index:390;background:var(--ink);flex-direction:column;justify-content:center;padding:60px 10vw;}
+.fmenu.on{display:flex;}
+.fmenu-links{display:flex;flex-direction:column;margin-bottom:48px;}
+.fmenu-links a{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,8vw,88px);letter-spacing:.04em;color:var(--cream);opacity:.12;line-height:1.08;transition:opacity .3s,color .3s;border-bottom:1px solid rgba(245,237,214,.06);padding:4px 0;}
+.fmenu-links a:hover{opacity:1;color:var(--yellow);}
+.fmenu-foot{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(245,237,214,.1);padding-top:24px;}
+.fmenu-foot a{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(245,237,214,.18);color:var(--cream);transition:all .2s;}
+.fmenu-foot a:hover{border-color:var(--cream);}
+.fmenu-foot a.fp{background:var(--pink);border-color:var(--pink);color:#fff;}
+.fmenu-hint{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;color:rgba(245,237,214,.15);margin-top:14px;}
+.ph{background:var(--ink);color:var(--cream);padding:56px 40px 44px;border-bottom:3px solid var(--cream);position:relative;overflow:hidden;}
+.ph-pat{position:absolute;top:0;right:0;width:36%;height:100%;pointer-events:none;opacity:.07;}
+.ph-kicker{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);display:block;margin-bottom:14px;position:relative;z-index:1;}
+.ph-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,112px);line-height:.88;letter-spacing:.02em;position:relative;z-index:1;margin-bottom:18px;color:var(--cream);}
+.ph-title em{color:var(--pink);}
+.ph-desc{font-size:.95rem;line-height:1.8;color:rgba(245,237,214,.5);max-width:500px;position:relative;z-index:1;}
+.ph-stats{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:1;}
+.ph-stat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--yellow);line-height:1;}
+.ph-stat-l{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.35);margin-top:2px;}
+.content{max-width:var(--w);margin:0 auto;padding:0 32px 80px;}
+.sec-hd{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:28px 0 14px;display:flex;align-items:center;gap:16px;border-bottom:2px solid var(--ink);}
+.sec-hd.pink{color:var(--pink);}.sec-hd.pink::after{content:'';flex:1;height:2px;background:var(--pink);}
+.sec-hd.green{color:var(--green);}.sec-hd.green::after{content:'';flex:1;height:2px;background:var(--green);}
+/* CASE FILE ACCORDION */
+.proj{border-bottom:1px solid rgba(12,8,0,.12);}
+.proj-hd{display:flex;align-items:center;gap:12px;padding:20px 0;transition:opacity .2s;cursor:pointer;}
+.proj-hd:hover{opacity:.75;}
+.ptag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;flex-shrink:0;}
+.tf{background:var(--pink);color:#fff;}.tn{background:var(--green);color:var(--ink);}
+.proj-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);letter-spacing:.03em;flex:1;}
+.proj-yr{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;color:rgba(12,8,0,.35);flex-shrink:0;}
+.proj-arrow{width:30px;height:30px;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;font-size:18px;font-weight:700;line-height:1;}
+.proj.open .proj-arrow{background:var(--pink);border-color:var(--pink);color:#fff;transform:rotate(45deg);}
+.proj-body{max-height:0;overflow:hidden;transition:max-height .55s ease;}
+.proj.open .proj-body{max-height:1800px;}
+/* CASE FILE LAYOUT */
+.case-file{padding:4px 0 32px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(12,8,0,.08);}
+.case-file.solo{grid-template-columns:1fr;}
+.cf-col{padding:24px 28px 0 0;}
+.cf-col:nth-child(2){padding:24px 0 0 28px;border-left:1px solid rgba(12,8,0,.08);}
+.cf-section{margin-bottom:20px;}
+.cf-label{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(12,8,0,.3);display:block;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(12,8,0,.08);}
+.cf-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;font-style:italic;margin-bottom:10px;line-height:1.25;color:var(--ink);}
+.cf-body{font-size:.84rem;line-height:1.9;color:rgba(12,8,0,.62);}
+.cf-body strong{color:var(--ink);font-weight:600;}
+.cf-body em{font-style:italic;color:rgba(12,8,0,.75);}
+.cf-outcome{background:var(--ink);color:var(--cream);padding:14px 18px;margin-top:12px;display:flex;align-items:flex-start;gap:10px;}
+.cf-outcome-ico{font-size:14px;flex-shrink:0;margin-top:1px;}
+.cf-outcome-text{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.6;}
+.cf-outcome-text strong{color:var(--yellow);}
+.proj-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.pl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border:2px solid var(--ink);transition:all .2s;}
+.pl:hover{background:var(--ink);color:var(--cream);}
+.pf{background:var(--pink);border-color:var(--pink);color:#fff;}.pf:hover{background:#ff4d7a!important;}
+.gf{background:var(--green);border-color:var(--green);color:var(--ink);}
+.yf{background:var(--yellow);border-color:var(--yellow);color:var(--ink);}
+.ve{width:100%;aspect-ratio:16/9;background:var(--ink);overflow:hidden;}
+.ve iframe{width:100%;height:100%;border:none;display:block;}
+.vg{display:grid;gap:2px;}
+.g1{grid-template-columns:1fr;max-width:600px;}
+.g2{grid-template-columns:1fr 1fr;}
+.g3{grid-template-columns:1fr 1fr 1fr;}
+.act-nav{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px;}
+.an{background:var(--ink);color:var(--cream);padding:24px 28px;display:flex;flex-direction:column;border-top:4px solid transparent;transition:background .2s;}
+.an:hover{background:#2a1a00;}
+.an.prev{border-top-color:var(--yellow);}.an.next{border-top-color:var(--green);text-align:right;}
+.an-lbl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.3);margin-bottom:6px;}
+.an-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.2vw,28px);letter-spacing:.03em;}
+.an.next .an-title::after{content:' →';}.an.prev .an-title::before{content:'← ';}
+footer{background:var(--ink);padding:16px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ft{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.18);}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+.theme-btn{display:flex;align-items:center;}
+@media(max-width:860px){
+  .mast-nav{display:none;}.burger{display:flex;}.theme-btn{display:none;}
+  .ph{padding:80px 20px 36px;}.content{padding:0 20px 60px;}
+  .case-file{grid-template-columns:1fr;}.cf-col{padding:20px 0 0;}.cf-col:nth-child(2){padding:16px 0 0;border-left:none;border-top:1px solid rgba(12,8,0,.08);}
+  .g2,.g3{grid-template-columns:1fr;}.act-nav{grid-template-columns:1fr;}
+  .ph-stats{gap:20px;}
+  footer{padding:14px 20px;justify-content:center;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div id="cd"></div><div id="cr"></div>
+<header class="mast"><div class="mast-inner">
+  <a href="index.html" class="mast-logo">Durva <span>Dalal.</span></a>
+  <nav><ul class="mast-nav">
+    <li><a href="onscreen.html" class="cur">On Screen</a></li>
+    <li><a href="onground.html">On the Ground</a></li>
+    <li><a href="onpage.html">On the Page</a></li>
+    <li><a href="university.html">University</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul></nav>
+  <div class="mast-r">
+    <a href="index.html" class="mast-back">Home</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☀ / ☾</button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</div></header>
+<div class="fmenu" id="fmenu" aria-hidden="true">
+  <div class="fmenu-links"><a href="index.html">Home</a><a href="onscreen.html">On Screen</a><a href="onground.html">On the Ground</a><a href="onpage.html">On the Page</a><a href="university.html">University</a><a href="index.html#contact">Contact</a></div>
+  <div class="fmenu-foot"><a href="https://calendly.com/durvadalaluk/calls" target="_blank" rel="noopener" class="fp">Book a Call</a><a href="https://www.linkedin.com/in/durva-d-2850591bb/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:durvadalaluk@gmail.com">Email</a></div>
+  <p class="fmenu-hint">ESC or click outside to close</p>
+</div>
+<div class="ph">
+  <div class="ph-pat"><svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="300" cy="300" r="260" stroke="#E8195A" stroke-width="1"/><circle cx="300" cy="300" r="190" stroke="#E8195A" stroke-width=".7"/><circle cx="300" cy="300" r="120" stroke="#F0DC00" stroke-width=".6"/><circle cx="300" cy="300" r="55" stroke="#F0DC00" stroke-width=".5"/><circle cx="300" cy="300" r="18" fill="#E8195A" opacity=".3"/><line x1="300" y1="40" x2="300" y2="560" stroke="#E8195A" stroke-width=".5"/><line x1="40" y1="300" x2="560" y2="300" stroke="#E8195A" stroke-width=".5"/><line x1="116" y1="116" x2="484" y2="484" stroke="#F0DC00" stroke-width=".4"/><line x1="484" y1="116" x2="116" y2="484" stroke="#F0DC00" stroke-width=".4"/></svg></div>
+  <span class="ph-kicker">Act I — On Screen · Ad Films · NGO Films · 2020–2023</span>
+  <h1 class="ph-title">Scripts. Films.<br><em>Stories.</em></h1>
+  <p class="ph-desc">Television commercials that aired nationally across India. Purpose films for global NGOs. Every project on this page started with a brief and ended with something people actually watched.</p>
+  <div class="ph-stats count-trigger">
+    <div><p class="ph-stat-n"><span data-count="10" data-suffix="">0</span></p><p class="ph-stat-l">Ad films · Gamezy alone</p></div>
+    <div><p class="ph-stat-n"><span data-count="2" data-suffix="M+">0M+</span></p><p class="ph-stat-l">Avg views per campaign</p></div>
+    <div><p class="ph-stat-n"><span data-count="6" data-suffix="+">0+</span></p><p class="ph-stat-l">NGO and CSR films</p></div>
+  </div>
+</div>
+<div class="content">
+
+<div class="sec-hd pink rv">Ad Films — Case Files</div>
+
+<!-- GAMEZY -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tf">TV Commercial · 10 Films</span>
+    <span class="proj-name">Gamezy — IPL Campaign Series</span>
+    <span class="proj-yr">2022 and 2023</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file">
+    <div class="cf-col">
+      <div class="cf-section">
+        <span class="cf-label">The Brief</span>
+        <h4 class="cf-title">India's IPL season. A fantasy sports market with six loud players. How do you get noticed?</h4>
+        <p class="cf-body">Gamezy, a fast-growing fantasy cricket platform, came in with a specific challenge: the IPL season is the noisiest sporting moment in India, and every competitor was running near-identical messaging around winning big. The brief was to cut through — not by being louder, but by being sharper. <strong>Two seasons. Ten commercials.</strong> The work needed to be funny, fast, and rooted in something users genuinely felt.</p>
+      </div>
+      <div class="cf-section">
+        <span class="cf-label">My Role</span>
+        <p class="cf-body">Lead scriptwriter across both seasons. Responsible for the campaign concept, all ten scripts, and the overarching narrative line. Worked directly with the production team to ensure the scripts translated on screen — not just on paper.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://youtu.be/FevCmezp7X4" target="_blank" rel="noopener" class="pl pf">Watch 1</a>
+        <a href="https://youtu.be/rarBJ9zQ9TQ" target="_blank" rel="noopener" class="pl pf">Watch 2</a>
+        <a href="https://youtu.be/vjYsPipqPvw" target="_blank" rel="noopener" class="pl pf">Watch 3</a>
+        <a href="https://youtu.be/MeAGpbcsJxM" target="_blank" rel="noopener" class="pl">4</a>
+        <a href="https://youtu.be/1UcvWEoesIo" target="_blank" rel="noopener" class="pl">5</a>
+        <a href="https://youtu.be/PTQQz26V6eM" target="_blank" rel="noopener" class="pl">6</a>
+        <a href="https://youtu.be/EaEwj3RftE8" target="_blank" rel="noopener" class="pl">7</a>
+        <a href="https://youtu.be/2w_jmfdpegw" target="_blank" rel="noopener" class="pl">8</a>
+        <a href="https://youtu.be/5HSgSSFj5Gs" target="_blank" rel="noopener" class="pl">9</a>
+        <a href="https://youtu.be/EKjSFxIh6LU" target="_blank" rel="noopener" class="pl">10</a>
+      </div>
+    </div>
+    <div class="cf-col">
+      <div class="cf-section">
+        <span class="cf-label">The Insight That Drove Everything</span>
+        <h4 class="cf-title">"App Badlo" — Change Your App</h4>
+        <p class="cf-body">The sharpest insight on the project: <strong>when fantasy cricket players lose, they blame the app, not themselves.</strong> That is not a flaw in user psychology — it is a door. "App Badlo" gave frustrated Gamezy rivals a funny, self-aware way out. It did not argue that Gamezy was better. It acknowledged the frustration, gave it a name, and handed the user a solution. Comedy as strategy.</p>
+        <p class="cf-body" style="margin-top:10px;">Each film featured a different losing scenario — bad picks, wrong captains, last-minute substitutions — all ending the same way: switch the app. The consistency of the idea across ten films made it a campaign, not just a collection of spots.</p>
+      </div>
+      <div class="cf-outcome">
+        <span class="cf-outcome-ico">📊</span>
+        <span class="cf-outcome-text"><strong>Avg 2M+ views per film.</strong> Broadcast nationally during IPL across two consecutive seasons. Campaign became recognisable enough that the "App Badlo" line entered the conversation among fantasy cricket communities.</span>
+      </div>
+      <div class="vg g3" style="margin-top:16px;">
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/FevCmezp7X4" allowfullscreen title="Gamezy 1"></iframe></div>
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/rarBJ9zQ9TQ" allowfullscreen title="Gamezy 2"></iframe></div>
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/vjYsPipqPvw" allowfullscreen title="Gamezy 3"></iframe></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- KUSHAL'S -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tf">Digital Campaign · 2 Films</span>
+    <span class="proj-name">Kushal's Jewellery — Rakshabandhan</span>
+    <span class="proj-yr">2022</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file">
+    <div class="cf-col">
+      <div class="cf-section">
+        <span class="cf-label">The Brief</span>
+        <h4 class="cf-title">India's biggest gifting festival. One jewellery brand. Make it feel personal.</h4>
+        <p class="cf-body">Rakshabandhan is one of India's biggest sibling festivals — brothers gift sisters, and the pressure to get it right is real. Kushal's, a national jewellery chain, wanted a campaign that would drive awareness and footfall during the peak gifting window. The brief: <strong>make the brand feel less transactional and more emotionally relevant</strong> to younger audiences.</p>
+      </div>
+      <div class="cf-section">
+        <span class="cf-label">The Insight and My Contribution</span>
+        <p class="cf-body">The strategy leaned into a universal truth: <em>brothers are notoriously bad at buying jewellery for sisters.</em> Not because they do not care — because every sister is different, and the thought of getting it wrong is paralysing. The campaign reframed Kushal's not as a jewellery store but as the answer to that exact anxiety. Script, campaign concept, and narrative direction. Two films, each telling the story through a different sister archetype.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://youtu.be/rlmGuSVDw9U" target="_blank" rel="noopener" class="pl pf">Watch Film 1</a>
+        <a href="https://youtu.be/n-KiFQnT1No" target="_blank" rel="noopener" class="pl">Watch Film 2</a>
+      </div>
+    </div>
+    <div class="cf-col">
+      <div class="vg g2">
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/rlmGuSVDw9U" allowfullscreen title="Kushal 1"></iframe></div>
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/n-KiFQnT1No" allowfullscreen title="Kushal 2"></iframe></div>
+      </div>
+      <div class="cf-outcome" style="margin-top:16px;">
+        <span class="cf-outcome-ico">🎯</span>
+        <span class="cf-outcome-text">Campaign ran nationally during the festival window. <strong>Positioned Kushal's as the emotionally intelligent gifting choice</strong> against competitors who led purely on product.</span>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ICICI FATHER'S DAY -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tf">Digital Campaign</span>
+    <span class="proj-name">ICICI Bank — Father's Day</span>
+    <span class="proj-yr">2022</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file solo">
+    <div class="cf-col" style="padding-right:0;">
+      <div class="cf-section">
+        <span class="cf-label">The Brief and Approach</span>
+        <h4 class="cf-title">A banking ad that does not feel like a banking ad</h4>
+        <p class="cf-body">ICICI Bank's brief was to connect their youth banking account to the emotional bond between a father and child — timed to Father's Day. The challenge: banking ads that lead with emotion almost always tip into sentimentality and lose credibility. <strong>The approach was comedy-emotional.</strong> Show the absurd lengths a father will go through for his child — with warmth, with laughter — and let the landing on ICICI Bank feel earned rather than bolted on. Script and creative direction. The film aired on Instagram and received strong organic engagement for a financial product ad.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://www.instagram.com/tv/Ce8xB3Hhh0T/" target="_blank" rel="noopener" class="pl pf">Watch on Instagram</a>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ICICI IMOBILE -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tf">Digital Campaign · 2 Films</span>
+    <span class="proj-name">ICICI iMobile Pay — Wes Anderson Series</span>
+    <span class="proj-yr">2022</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file solo">
+    <div class="cf-col" style="padding-right:0;">
+      <div class="cf-section">
+        <span class="cf-label">The Brief and Approach</span>
+        <h4 class="cf-title">Two product feature ads that feel like films you actually want to watch</h4>
+        <p class="cf-body">The brief was to explain features of ICICI's iMobile Pay app — a payment and banking application — without producing a product tutorial. The problem with fintech advertising is that features are inherently dry. <strong>The solution was to wrap each feature in a distinct visual language that did all the heavy lifting before the message landed.</strong> Two Wes Anderson-style short films: symmetrical framing, deadpan delivery, a visual grammar so considered that viewers engaged with the aesthetic before they registered the banking message. The format earned attention; the product information landed in that earned space. Script and creative direction for both films.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://www.instagram.com/reel/Ckh0L6Mj_Ph/" target="_blank" rel="noopener" class="pl pf">Ad 1 on Instagram</a>
+        <a href="https://www.instagram.com/reel/Cjnqi30qMVy/" target="_blank" rel="noopener" class="pl">Ad 2 on Instagram</a>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- NETBRAHMA -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tf">Brand Film</span>
+    <span class="proj-name">Netbrahma — Flexible Working</span>
+    <span class="proj-yr">2022</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file">
+    <div class="cf-col">
+      <div class="cf-section">
+        <span class="cf-label">The Brief and Insight</span>
+        <h4 class="cf-title">A company that gets creatives needs a film that proves it — not just says it</h4>
+        <p class="cf-body">Netbrahma is a platform that gives creative professionals the freedom to work on their own terms. The brief was to produce a brand film that communicated this proposition — but the constraint was that the audience are creatives themselves. <strong>They will see through anything that feels like a corporate marketing claim.</strong> The film had to demonstrate the brand's personality, not describe it. Playful, self-aware, and structurally a little odd in the way that genuinely creative things tend to be. Script and creative concept.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://youtube.com/shorts/3bInMhkhFSI" target="_blank" rel="noopener" class="pl pf">Watch</a>
+      </div>
+    </div>
+    <div class="cf-col">
+      <div class="vg g1">
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/3bInMhkhFSI" allowfullscreen title="Netbrahma"></iframe></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="sec-hd green rv" style="margin-top:8px;">NGO and Purpose Films — Case Files</div>
+
+<!-- ICICI SARISKA -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tn">CSR Film · ICICI Foundation</span>
+    <span class="proj-name">Sariska Tiger Reserve — ST9's Story</span>
+    <span class="proj-yr">2024</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file">
+    <div class="cf-col">
+      <div class="cf-section">
+        <span class="cf-label">The Brief</span>
+        <h4 class="cf-title">ICICI Foundation's conservation work spans 56 forests. Tell it through one tiger.</h4>
+        <p class="cf-body">ICICI Foundation's CSR programme spans 56 forests and tiger reserves across India — water conservation, grassland augmentation, enhanced ranger resources, livelihood support for border communities. The brief: communicate the scale and depth of that impact without producing a corporate impact report. A film that felt like it belonged on a nature channel, not in a boardroom presentation.</p>
+      </div>
+      <div class="cf-section">
+        <span class="cf-label">My Role and Approach</span>
+        <p class="cf-body">Script conceptualisation and writing, casting, costume direction, and post-production edits. The storytelling choice was to tell the entire story through the perspective of ST9 — a female tiger at Sariska Tiger Reserve. By anchoring the narrative in one animal's thriving existence, the film made the conservation work feel immediate and personal rather than institutional. Shot across difficult terrain over multiple days. <strong>The challenge was holding a single emotional throughline across a complex environmental brief with many stakeholders.</strong></p>
+      </div>
+      <div class="proj-links">
+        <a href="https://youtu.be/wG-4kp_Jy5c" target="_blank" rel="noopener" class="pl gf">YouTube</a>
+        <a href="https://www.instagram.com/reel/DIjDLqGM-4N/" target="_blank" rel="noopener" class="pl yf">Reel 1</a>
+        <a href="https://www.instagram.com/reel/DIAxcz0T9wp/" target="_blank" rel="noopener" class="pl yf">Reel 2</a>
+      </div>
+    </div>
+    <div class="cf-col">
+      <div class="vg g1">
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/wG-4kp_Jy5c" allowfullscreen title="ICICI Sariska"></iframe></div>
+      </div>
+      <div class="cf-outcome" style="margin-top:12px;">
+        <span class="cf-outcome-ico">🌿</span>
+        <span class="cf-outcome-text">Film used by ICICI Foundation across internal and external communications. Also cut into short-form Instagram reels for social distribution. <strong>Demonstrated conservation impact at scale through individual storytelling.</strong></span>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- GATES TB -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tn">Global NGO Film · Gates Foundation</span>
+    <span class="proj-name">Together Against TB — Chandraprakash's Story</span>
+    <span class="proj-yr">2023</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file">
+    <div class="cf-col">
+      <div class="cf-section">
+        <span class="cf-label">The Brief</span>
+        <h4 class="cf-title">TB is curable. The brief was not about the disease. It was about what surrounds it.</h4>
+        <p class="cf-body">Produced in collaboration with the Bill and Melinda Gates Foundation for their India TB-free initiative. The brief was not a clinical one — it was a social one. <strong>Stigma, isolation, and the absence of community support are as damaging to TB outcomes as the disease itself.</strong> The task was to show what collective care looks like in practice, without the film feeling like a public health poster.</p>
+      </div>
+      <div class="cf-section">
+        <span class="cf-label">My Role and the Craft Involved</span>
+        <p class="cf-body">Script conceptualisation and writing, casting, costume direction, and post-production edits. The film tells the story of Chandraprakash and the community of Khushipur that refused to let him face his diagnosis alone. Writing for a global health organisation requires balancing <strong>emotional storytelling with factual accuracy, and absolute cultural sensitivity</strong> — the story had to be true to its community, not a Western interpretation of rural India.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://youtu.be/UHNKZagW5bg" target="_blank" rel="noopener" class="pl gf">Watch</a>
+      </div>
+    </div>
+    <div class="cf-col">
+      <div class="vg g1">
+        <div class="ve"><iframe data-src="https://www.youtube.com/embed/UHNKZagW5bg" allowfullscreen title="Gates TB"></iframe></div>
+      </div>
+      <div class="cf-outcome" style="margin-top:12px;">
+        <span class="cf-outcome-ico">🌐</span>
+        <span class="cf-outcome-text">Used by the Gates Foundation India team for programme communications. <strong>Demonstrated that TB elimination requires community action, not just clinical intervention</strong> — a key message of the initiative.</span>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- SAVE THE CHILDREN -->
+<div class="proj rv">
+  <div class="proj-hd" onclick="tog(this)">
+    <span class="ptag tn">Corporate Film</span>
+    <span class="proj-name">Save the Children — Corporate Film</span>
+    <span class="proj-yr">2022</span>
+    <span class="proj-arrow">+</span>
+  </div>
+  <div class="proj-body"><div class="case-file solo">
+    <div class="cf-col" style="padding-right:0;">
+      <div class="cf-section">
+        <span class="cf-label">The Brief and My Contribution</span>
+        <h4 class="cf-title">One of the world's largest children's rights organisations. A film that earns trust rather than demanding it.</h4>
+        <p class="cf-body">Corporate film scripted for Save the Children, one of the world's most recognised children's rights organisations with operations across 100+ countries. The challenge with NGO corporate films is avoiding the trap of becoming a charity appeal. <strong>The brief required emotional clarity without emotional manipulation.</strong> Trust over persuasion. The film needed to communicate credibility and compassion simultaneously — two things that often pull in opposite directions in charity communications. Script, casting, costume direction, and post-production edits. The final film was used for internal stakeholder and partner communications.</p>
+      </div>
+      <div class="proj-links">
+        <a href="https://youtu.be/dMrX5SZ-lxo" target="_blank" rel="noopener" class="pl gf">Watch</a>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<div class="act-nav rv">
+  <a href="onpage.html" class="an prev"><span class="an-lbl">Act III</span><span class="an-title" style="color:var(--yellow);">On the Page</span></a>
+  <a href="onground.html" class="an next"><span class="an-lbl">Act II</span><span class="an-title" style="color:var(--green);">On the Ground</span></a>
+</div>
+</div>
+<footer><span class="ft">© 2026 Durva Dalal</span><a href="index.html" class="ft" style="color:var(--pink);">← Home</a></footer>
+<script>
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');let mx=-100,my=-100,rx=-100,ry=-100;
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});(function t(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cd.style.left=mx+'px';cd.style.top=my+'px';cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(t);})();document.addEventListener('mousedown',()=>document.body.classList.add('clk'));document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});}
+const burger=document.getElementById('burger'),fmenu=document.getElementById('fmenu');
+function openM(){fmenu.classList.add('on');burger.classList.add('open');}function closeM(){fmenu.classList.remove('on');burger.classList.remove('open');}
+burger.addEventListener('click',e=>{e.stopPropagation();fmenu.classList.contains('on')?closeM():openM();});
+document.addEventListener('click',e=>{if(fmenu.classList.contains('on')&&!fmenu.contains(e.target)&&e.target!==burger)closeM();});
+fmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeM));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target);}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+function tog(hd){const p=hd.closest('.proj'),was=p.classList.contains('open');document.querySelectorAll('.proj.open').forEach(x=>{x.classList.remove('open');x.querySelectorAll('iframe[data-src]').forEach(f=>{f.removeAttribute('src');});});if(!was){p.classList.add('open');p.querySelectorAll('iframe[data-src]').forEach(f=>{f.src=f.dataset.src;});}}
+function animCount(el){const target=parseFloat(el.dataset.count);const suffix=el.dataset.suffix||'';const dur=1400;const start=performance.now();function step(now){const p=Math.min((now-start)/dur,1);const ease=1-Math.pow(1-p,3);el.textContent=Math.round(ease*target)+suffix;if(p<1)requestAnimationFrame(step);else el.textContent=target+suffix;}requestAnimationFrame(step);}
+const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(el=>animCount(el));cObs.unobserve(e.target);}});},{threshold:0.4});
+document.querySelectorAll('.count-trigger').forEach(el=>cObs.observe(el));
+
+// THEME
+let _dark=false;
+const _tb=document.getElementById('themeBtn');
+if(_tb)_tb.addEventListener('click',()=>{_dark=!_dark;document.body.style.background=_dark?'#0C0800':'';document.body.style.color=_dark?'#F5EDD6':'';});
+</script>
+</body></html>

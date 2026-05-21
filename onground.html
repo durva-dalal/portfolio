@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>On the Ground — Durva Dalal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C0800;--cream:#F5EDD6;--cream2:#EDE4C6;--pink:#E8195A;--yellow:#F0DC00;--green:#00B84C;--w:1160px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+#cd,#cr{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+#cd{width:8px;height:8px;background:var(--green);transition:width .15s,height .15s;}
+#cr{width:32px;height:32px;border:1.5px solid rgba(0,184,76,.5);transition:width .2s,height .2s;}
+body.hov #cd{width:3px;height:3px;}body.hov #cr{width:48px;height:48px;border-color:var(--green);}
+body.clk #cd{background:var(--yellow);}
+@media(hover:none){#cd,#cr{display:none;}body{cursor:auto;}}
+.mast{position:sticky;top:0;z-index:400;background:var(--ink);color:var(--cream);border-bottom:3px solid var(--cream);}
+.mast-inner{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;gap:16px;}
+.mast-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;color:var(--cream);flex-shrink:0;}
+.mast-logo span{color:var(--green);}
+.mast-back{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,214,.4);display:flex;align-items:center;gap:6px;transition:color .2s;}
+.mast-back:hover{color:var(--yellow);}.mast-back::before{content:'←';}
+.mast-nav{display:flex;list-style:none;}
+.mast-nav a{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.4);padding:0 11px;height:52px;display:flex;align-items:center;border-left:1px solid rgba(245,237,214,.08);transition:color .2s;}
+.mast-nav a:hover,.mast-nav a.cur{color:var(--yellow);}
+.mast-nav li:last-child a{border-right:1px solid rgba(245,237,214,.08);}
+.theme-btn{font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;border-left:1px solid rgba(245,237,214,.1);color:rgba(245,237,214,.35);padding:0 14px;height:52px;cursor:none;transition:color .2s;display:none;}
+.theme-btn:hover{color:var(--yellow);}
+.burger{background:none;border:none;padding:6px;display:none;flex-direction:column;gap:5px;cursor:none;}
+.burger span{display:block;width:20px;height:1.5px;background:var(--cream);transition:all .3s;}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+.fmenu{display:none;position:fixed;inset:0;z-index:390;background:var(--ink);flex-direction:column;justify-content:center;padding:60px 10vw;}
+.fmenu.on{display:flex;}
+.fmenu-links{display:flex;flex-direction:column;margin-bottom:48px;}
+.fmenu-links a{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,8vw,88px);letter-spacing:.04em;color:var(--cream);opacity:.12;line-height:1.08;transition:opacity .3s,color .3s;border-bottom:1px solid rgba(245,237,214,.06);padding:4px 0;}
+.fmenu-links a:hover{opacity:1;color:var(--yellow);}
+.fmenu-foot{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(245,237,214,.1);padding-top:24px;}
+.fmenu-foot a{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(245,237,214,.18);color:var(--cream);transition:all .2s;}
+.fmenu-foot a:hover{border-color:var(--cream);}
+.fmenu-foot a.fp{background:var(--pink);border-color:var(--pink);color:#fff;}
+.fmenu-hint{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;color:rgba(245,237,214,.15);margin-top:14px;}
+.ph{background:var(--ink);color:var(--cream);padding:56px 40px 44px;border-bottom:3px solid var(--cream);position:relative;overflow:hidden;}
+.ph-pat{position:absolute;top:0;left:0;width:32%;height:100%;pointer-events:none;opacity:.07;}
+.ph-kicker{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:14px;position:relative;z-index:1;}
+.ph-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,112px);line-height:.88;letter-spacing:.02em;position:relative;z-index:1;margin-bottom:18px;color:var(--cream);}
+.ph-title em{color:var(--green);}
+.ph-desc{font-size:.95rem;line-height:1.8;color:rgba(245,237,214,.5);max-width:500px;position:relative;z-index:1;}
+.ph-stats{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap;position:relative;z-index:1;}
+.ph-stat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--green);line-height:1;}
+.ph-stat-l{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.35);margin-top:2px;}
+/* SALFORD FEATURE */
+.sal{display:grid;grid-template-columns:300px 1fr;border-bottom:3px solid var(--ink);}
+.sal-l{background:var(--ink);color:var(--cream);padding:40px 32px;border-right:3px solid var(--cream);position:relative;overflow:hidden;}
+.sal-l-pat{position:absolute;inset:0;opacity:.04;pointer-events:none;}
+.sal-l-pat svg{width:100%;height:100%;}
+.sal-l-inner{position:relative;z-index:1;}
+.sal-lbl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:10px;}
+.sal-org{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,4.5vw,60px);letter-spacing:.03em;line-height:.9;color:var(--cream);margin-bottom:6px;}
+.sal-role{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:18px;}
+.sal-desc{font-size:.84rem;line-height:1.8;color:rgba(245,237,214,.45);margin-bottom:24px;}
+.sal-stats{display:flex;flex-direction:column;}
+.sse{padding:9px 0;border-bottom:1px solid rgba(245,237,214,.1);display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+.sse:last-child{border-bottom:none;}
+.sse-lbl{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.3);}
+.sse-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.2vw,28px);letter-spacing:.02em;line-height:1;}
+.sse:nth-child(1) .sse-val{color:var(--green);}
+.sse:nth-child(2) .sse-val{color:var(--yellow);}
+.sse:nth-child(3) .sse-val{color:var(--pink);}
+.sse:nth-child(4) .sse-val{color:rgba(245,237,214,.55);}
+.sal-r{padding:40px 36px;}
+.sal-r-hl{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.2vw,28px);letter-spacing:.04em;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--ink);}
+/* CASE FILE */
+.cf-label{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(12,8,0,.3);display:block;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(12,8,0,.08);}
+.cf-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;font-style:italic;margin-bottom:8px;line-height:1.25;}
+.cf-body{font-size:.84rem;line-height:1.9;color:rgba(12,8,0,.62);}
+.cf-body strong{color:var(--ink);}
+.cf-outcome{background:var(--ink);color:var(--cream);padding:14px 18px;margin-top:12px;display:flex;align-items:flex-start;gap:10px;}
+.cf-outcome-ico{font-size:14px;flex-shrink:0;margin-top:1px;}
+.cf-outcome-text{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.6;}
+.cf-outcome-text strong{color:var(--yellow);}
+.ach-list{list-style:none;}
+.ach{display:flex;gap:14px;padding:20px 0;border-bottom:1px solid rgba(12,8,0,.08);}
+.ach:last-child{border-bottom:none;}
+.ach-ico{font-size:15px;flex-shrink:0;width:20px;margin-top:2px;}
+.ach-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;margin-bottom:4px;}
+.ach-body{font-size:.82rem;line-height:1.8;color:rgba(12,8,0,.58);}
+.ach-m{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:700;margin-top:4px;display:block;}
+/* STRIPS */
+.strips-wrap{max-width:var(--w);margin:0 auto;padding:0 32px 80px;}
+.sec-hd{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:24px 0 14px;display:flex;align-items:center;gap:16px;border-bottom:2px solid var(--ink);color:var(--green);}
+.sec-hd::after{content:'';flex:1;height:2px;background:var(--green);}
+.strip{display:grid;grid-template-columns:140px 1fr;border-bottom:1px solid rgba(12,8,0,.1);transition:background .2s;}
+.strip:hover{background:var(--cream2);}
+.strip-l{padding:28px 20px;border-right:1px solid rgba(12,8,0,.1);display:flex;flex-direction:column;}
+.strip-num{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:rgba(12,8,0,.07);}
+.strip-metric{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;margin-top:8px;line-height:1.6;}
+.strip-r{padding:28px 32px;}
+.stag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 8px;display:inline-block;font-weight:700;margin-bottom:12px;}
+.tg{background:var(--green);color:var(--ink);}.ty{background:var(--yellow);color:var(--ink);}.tp{background:var(--pink);color:#fff;}
+.strip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.8vw,34px);letter-spacing:.03em;margin-bottom:6px;}
+.strip-sub{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(12,8,0,.5);margin-bottom:10px;}
+.strip-body{font-size:.83rem;line-height:1.85;color:rgba(12,8,0,.58);max-width:640px;}
+.strip-body strong{color:var(--ink);}
+.strip-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.chip{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(12,8,0,.15);color:rgba(12,8,0,.4);}
+.strip-link{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid currentColor;padding-bottom:1px;display:inline-block;margin-top:12px;font-weight:700;}
+.act-nav{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px;}
+.an{background:var(--ink);color:var(--cream);padding:24px 28px;display:flex;flex-direction:column;border-top:4px solid transparent;transition:background .2s;}
+.an:hover{background:#2a1a00;}
+.an.prev{border-top-color:var(--pink);}.an.next{border-top-color:var(--yellow);text-align:right;}
+.an-lbl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.3);margin-bottom:6px;}
+.an-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.2vw,28px);letter-spacing:.03em;}
+.an.next .an-title::after{content:' →';}.an.prev .an-title::before{content:'← ';}
+footer{background:var(--ink);padding:16px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ft{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.18);}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+.theme-btn{display:flex;align-items:center;}
+@media(max-width:860px){
+  .mast-nav{display:none;}.burger{display:flex;}.theme-btn{display:none;}
+  .ph{padding:80px 20px 36px;}
+  .sal{grid-template-columns:1fr;}.sal-l{border-right:none;border-bottom:3px solid var(--cream);}
+  .strips-wrap{padding:0 20px 60px;}
+  .strip{grid-template-columns:1fr;}.strip-l{padding:20px 0 0;border-right:none;}.strip-r{padding:16px 0 28px;}.strip-num{font-size:36px;}
+  .act-nav{grid-template-columns:1fr;}
+  footer{padding:14px 20px;justify-content:center;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div id="cd"></div><div id="cr"></div>
+<header class="mast"><div class="mast-inner">
+  <a href="index.html" class="mast-logo">Durva <span>Dalal.</span></a>
+  <nav><ul class="mast-nav">
+    <li><a href="onscreen.html">On Screen</a></li>
+    <li><a href="onground.html" class="cur">On the Ground</a></li>
+    <li><a href="onpage.html">On the Page</a></li>
+    <li><a href="university.html">University</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul></nav>
+  <div class="mast-r">
+    <a href="index.html" class="mast-back">Home</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☀ / ☾</button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</div></header>
+<div class="fmenu" id="fmenu" aria-hidden="true">
+  <div class="fmenu-links"><a href="index.html">Home</a><a href="onscreen.html">On Screen</a><a href="onground.html">On the Ground</a><a href="onpage.html">On the Page</a><a href="university.html">University</a><a href="index.html#contact">Contact</a></div>
+  <div class="fmenu-foot"><a href="https://calendly.com/durvadalaluk/calls" target="_blank" rel="noopener" class="fp">Book a Call</a><a href="https://www.linkedin.com/in/durva-d-2850591bb/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:durvadalaluk@gmail.com">Email</a></div>
+  <p class="fmenu-hint">ESC or click outside to close</p>
+</div>
+<div class="ph">
+  <div class="ph-pat"><svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" fill="none"><line x1="20" y1="580" x2="280" y2="580" stroke="#00B84C" stroke-width="1.5"/><line x1="20" y1="580" x2="20" y2="20" stroke="#00B84C" stroke-width="1.5"/><polyline points="20,520 70,430 130,340 180,240 230,150 280,60" stroke="#00B84C" stroke-width="2"/><circle cx="20" cy="520" r="5" fill="#00B84C"/><circle cx="130" cy="340" r="5" fill="#00B84C"/><circle cx="230" cy="150" r="5" fill="#00B84C"/><circle cx="280" cy="60" r="5" fill="#00B84C"/></svg></div>
+  <span class="ph-kicker">Act II — On the Ground · Strategy · Campaigns · 2022–Now</span>
+  <h1 class="ph-title">Strategy.<br>Results.<br><em>Numbers.</em></h1>
+  <p class="ph-desc">Email programmes that moved real metrics. EMEA website redevelopment. Monthly activations. Campus-wide digital screens built from zero. The unglamorous work that shows up in data.</p>
+  <div class="ph-stats count-trigger">
+    <div><p class="ph-stat-n"><span data-count="39" data-suffix="%">0%</span></p><p class="ph-stat-l">Avg email open rate achieved</p></div>
+    <div><p class="ph-stat-n"><span data-count="30" data-suffix="%">0%</span></p><p class="ph-stat-l">Engagement uplift · EMEA site</p></div>
+    <div><p class="ph-stat-n"><span data-count="8" data-suffix="">0</span></p><p class="ph-stat-l">Monthly activations · Salford SU</p></div>
+  </div>
+</div>
+
+<section class="sal">
+  <div class="sal-l">
+    <div class="sal-l-pat"><svg viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="150" cy="250" r="200" stroke="#00B84C" stroke-width=".6"/><circle cx="150" cy="250" r="140" stroke="#F0DC00" stroke-width=".4"/><circle cx="150" cy="250" r="80" stroke="#00B84C" stroke-width=".4"/><circle cx="150" cy="250" r="30" stroke="#F0DC00" stroke-width=".3"/><line x1="150" y1="50" x2="150" y2="450" stroke="#00B84C" stroke-width=".3"/><line x1="-50" y1="250" x2="350" y2="250" stroke="#00B84C" stroke-width=".3"/></svg></div>
+    <div class="sal-l-inner rv">
+      <span class="sal-lbl">Currently · 2024 to Now</span>
+      <h2 class="sal-org">Salford<br>Students'<br>Union</h2>
+      <p class="sal-role">Marketing Coordinator</p>
+      <p class="sal-desc">Marketing communications for 30,000+ students. Full-spectrum — campaigns, content, events, digital, data, and the kind of cross-functional coordination that rarely makes it onto a job description.</p>
+      <div class="sal-stats count-trigger">
+        <div class="sse"><span class="sse-lbl">Avg email open rate</span><span class="sse-val"><span data-count="39" data-suffix="%">0%</span></span></div>
+        <div class="sse"><span class="sse-lbl">Students reached</span><span class="sse-val"><span data-count="30" data-suffix="K+">0K+</span></span></div>
+
+      </div>
+    </div>
+  </div>
+  <div class="sal-r rv">
+    <h3 class="sal-r-hl">The Work — Case by Case</h3>
+    <ul class="ach-list">
+      <li class="ach"><span class="ach-ico">📧</span>
+        <div>
+          <h4 class="ach-title">Email Strategy Overhaul</h4>
+          <span class="cf-label" style="margin-top:6px;">The Problem</span>
+          <p class="ach-body">Inherited a flat, one-size-fits-all email programme running at 26% open rate. No segmentation, no testing discipline, content that tried to speak to every student at once and ended up speaking to none of them properly.</p>
+          <span class="cf-label" style="margin-top:10px;">What I Did</span>
+          <p class="ach-body">Rebuilt the programme from scratch through MSL. Introduced proper audience segmentation by student type and interest. Implemented subject line A/B testing. Shifted send timing based on engagement data. Wrote tailored content per segment rather than blanket communications.</p>
+          <span class="ach-m">26% to 39% open rate · one quarter · sustained</span>
+        </div>
+      </li>
+      <li class="ach"><span class="ach-ico">🎪</span>
+        <div>
+          <h4 class="ach-title">On-Site Activations and Events</h4>
+          <span class="cf-label" style="margin-top:6px;">The Scope</span>
+          <p class="ach-body">Eight monthly on-site activations, each raising awareness across a different pillar of the SU's offering — welfare, sport, societies, student voice, and more. The goal is not just footfall but connection: making students feel genuinely part of something rather than passive recipients of information.</p>
+          <span class="cf-label" style="margin-top:10px;">Beyond the Events</span>
+          <p class="ach-body">Vendor sourcing and coordination for SU elections. Post-campaign reporting after every activation and major campaign, feeding data-based insights back into strategy for the next cycle. Full coordination with other SU departments throughout.</p>
+          <span class="ach-m">8 activations monthly · data-based reporting · cross-department coordination</span>
+        </div>
+      </li>
+      <li class="ach"><span class="ach-ico">👥</span>
+        <div>
+          <h4 class="ach-title">Content Team Management</h4>
+          <span class="cf-label" style="margin-top:6px;">The Structure</span>
+          <p class="ach-body">Manage a team of 5 student content creators across Instagram, TikTok, and wider digital channels. Each creator is briefed individually — not through blanket briefs — which means every piece of content is considered for its platform and audience rather than repurposed from one to another. All outputs reviewed before publication.</p>
+          <span class="ach-m">5 creators · Instagram · TikTok · multi-platform</span>
+        </div>
+      </li>
+      <li class="ach"><span class="ach-ico">🖥️</span>
+        <div>
+          <h4 class="ach-title">Campus Digital Screens Programme</h4>
+          <span class="cf-label" style="margin-top:6px;">Starting Point: Zero</span>
+          <p class="ach-body">The SU had no consistent physical brand presence in high-footfall areas. I identified the gap, proposed the programme, and built the entire system from zero — designing evergreen content assets in Adobe Illustrator, deploying them through Xibo across campus, and creating the content calendar and production workflow so the system could run continuously without starting from scratch each time.</p>
+          <span class="ach-m">Campus-wide · Adobe Illustrator + Xibo · built from zero</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="strips-wrap">
+  <div class="sec-hd rv">Other Strategy Projects — Case Files</div>
+
+  <div class="strip rv">
+    <div class="strip-l">
+      <span class="strip-num">01</span>
+      <p class="strip-metric" style="color:var(--green);font-weight:700;"><span data-count="30" data-suffix="%">0%</span><br>engagement uplift</p>
+    </div>
+    <div class="strip-r">
+      <span class="stag tg">Project Leadership · ABC Digital</span>
+      <h3 class="strip-title">EMEA Website Redevelopment</h3>
+      <p class="strip-sub">How do you rebuild a website across 10+ teams in different countries without losing the thread?</p>
+      <span class="cf-label">The Brief</span>
+      <p class="strip-body">ABC Digital needed a full website redevelopment that would serve teams across the EMEA region — different markets, different priorities, one coherent digital presence. The challenge was not just technical or design-led. It was fundamentally a content and coordination challenge: how do you create something that works for everyone without defaulting to the lowest common denominator?</p>
+      <span class="cf-label" style="display:block;margin-top:14px;">My Role</span>
+      <p class="strip-body">Responsible for content strategy, information architecture, and UX writing across the entire project. Primary liaison between diverse stakeholder teams and external design agencies — which in practice meant translating between business language, design language, and user needs simultaneously. <strong>30% improvement in user engagement within three months of launch.</strong></p>
+      <div class="strip-chips"><span class="chip">Content Strategy</span><span class="chip">Information Architecture</span><span class="chip">UX Writing</span><span class="chip">EMEA</span><span class="chip">Agency Coordination</span></div>
+      <a href="https://app.abcdigital.com/Login" target="_blank" rel="noopener" class="strip-link" style="color:var(--green);">View ABC Digital</a>
+    </div>
+  </div>
+
+  <div class="strip rv">
+    <div class="strip-l">
+      <span class="strip-num">02</span>
+      <p class="strip-metric" style="color:var(--yellow);font-weight:700;">Live site<br>full ownership</p>
+    </div>
+    <div class="strip-r">
+      <span class="stag ty">Content Strategy · Leam Music Academy</span>
+      <h3 class="strip-title">Website Content and Brand Strategy</h3>
+      <p class="strip-sub">Single brief: futuristic, informative, captivating. No other guidance provided.</p>
+      <span class="cf-label">The Brief and My Role</span>
+      <p class="strip-body">Full website content strategy for a next-gen music teaching platform. The brief was deliberately open — which made it harder, not easier. No UX support, no design brief to follow, no content templates. <strong>Sole responsibility for every content decision: layout logic, section hierarchy, how much text each area carries, what the brand voice sounds like for a platform that is both innovative and approachable.</strong> The site had to feel like it belonged to a music platform of the future — not a standard course provider dressed up in new fonts.</p>
+      <span class="cf-label" style="display:block;margin-top:14px;">Outcome</span>
+      <p class="strip-body">Site launched and is live. All content, hierarchy, and voice decisions remain as delivered — no significant structural revisions required post-launch.</p>
+      <div class="strip-chips"><span class="chip">Web Copywriting</span><span class="chip">Content Architecture</span><span class="chip">Brand Voice</span><span class="chip">EdTech</span></div>
+      <a href="https://www.leam.in" target="_blank" rel="noopener" class="strip-link" style="color:var(--yellow);">Visit leam.in</a>
+    </div>
+  </div>
+
+  <div class="act-nav rv">
+    <a href="onscreen.html" class="an prev"><span class="an-lbl">Act I</span><span class="an-title" style="color:var(--pink);">On Screen</span></a>
+    <a href="onpage.html" class="an next"><span class="an-lbl">Act III</span><span class="an-title" style="color:var(--yellow);">On the Page</span></a>
+  </div>
+</div>
+
+<footer><span class="ft">© 2026 Durva Dalal</span><a href="index.html" class="ft" style="color:var(--green);">← Home</a></footer>
+<script>
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');let mx=-100,my=-100,rx=-100,ry=-100;
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});(function t(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cd.style.left=mx+'px';cd.style.top=my+'px';cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(t);})();document.addEventListener('mousedown',()=>document.body.classList.add('clk'));document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});}
+const burger=document.getElementById('burger'),fmenu=document.getElementById('fmenu');
+function openM(){fmenu.classList.add('on');burger.classList.add('open');}function closeM(){fmenu.classList.remove('on');burger.classList.remove('open');}
+burger.addEventListener('click',e=>{e.stopPropagation();fmenu.classList.contains('on')?closeM():openM();});
+document.addEventListener('click',e=>{if(fmenu.classList.contains('on')&&!fmenu.contains(e.target)&&e.target!==burger)closeM();});
+fmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeM));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target);}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+function animCount(el){const target=parseFloat(el.dataset.count);const suffix=el.dataset.suffix||'';const dur=1400;const start=performance.now();function step(now){const p=Math.min((now-start)/dur,1);const ease=1-Math.pow(1-p,3);el.textContent=Math.round(ease*target)+suffix;if(p<1)requestAnimationFrame(step);else el.textContent=target+suffix;}requestAnimationFrame(step);}
+const cObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(el=>animCount(el));cObs.unobserve(e.target);}});},{threshold:0.4});
+document.querySelectorAll('.count-trigger').forEach(el=>cObs.observe(el));
+
+// THEME
+let _dark=false;
+const _tb=document.getElementById('themeBtn');
+if(_tb)_tb.addEventListener('click',()=>{_dark=!_dark;document.body.style.background=_dark?'#0C0800':'';document.body.style.color=_dark?'#F5EDD6':'';});
+</script>
+</body></html>

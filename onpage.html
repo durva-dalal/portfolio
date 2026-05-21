@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>On the Page — Durva Dalal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C0800;--cream:#F5EDD6;--cream2:#EDE4C6;--pink:#E8195A;--yellow:#F0DC00;--green:#00B84C;--w:1160px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+#cd,#cr{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+#cd{width:8px;height:8px;background:var(--yellow);transition:width .15s,height .15s;}
+#cr{width:32px;height:32px;border:1.5px solid rgba(240,220,0,.5);transition:width .2s,height .2s;}
+body.hov #cd{width:3px;height:3px;}body.hov #cr{width:48px;height:48px;border-color:var(--yellow);}
+body.clk #cd{background:var(--pink);}
+@media(hover:none){#cd,#cr{display:none;}body{cursor:auto;}}
+.mast{position:sticky;top:0;z-index:400;background:var(--ink);color:var(--cream);border-bottom:3px solid var(--cream);}
+.mast-inner{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;gap:16px;}
+.mast-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;color:var(--cream);flex-shrink:0;}
+.mast-logo span{color:var(--yellow);}
+.mast-back{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,214,.4);display:flex;align-items:center;gap:6px;transition:color .2s;}
+.mast-back:hover{color:var(--yellow);}.mast-back::before{content:'←';}
+.mast-nav{display:flex;list-style:none;}
+.mast-nav a{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.4);padding:0 11px;height:52px;display:flex;align-items:center;border-left:1px solid rgba(245,237,214,.08);transition:color .2s;}
+.mast-nav a:hover,.mast-nav a.cur{color:var(--yellow);}
+.mast-nav li:last-child a{border-right:1px solid rgba(245,237,214,.08);}
+.theme-btn{font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;border-left:1px solid rgba(245,237,214,.1);color:rgba(245,237,214,.35);padding:0 14px;height:52px;cursor:none;transition:color .2s;display:none;}
+.theme-btn:hover{color:var(--yellow);}
+.burger{background:none;border:none;padding:6px;display:none;flex-direction:column;gap:5px;cursor:none;}
+.burger span{display:block;width:20px;height:1.5px;background:var(--cream);transition:all .3s;}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+.fmenu{display:none;position:fixed;inset:0;z-index:390;background:var(--ink);flex-direction:column;justify-content:center;padding:60px 10vw;}
+.fmenu.on{display:flex;}
+.fmenu-links{display:flex;flex-direction:column;margin-bottom:48px;}
+.fmenu-links a{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,8vw,88px);letter-spacing:.04em;color:var(--cream);opacity:.12;line-height:1.08;transition:opacity .3s,color .3s;border-bottom:1px solid rgba(245,237,214,.06);padding:4px 0;}
+.fmenu-links a:hover{opacity:1;color:var(--yellow);}
+.fmenu-foot{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(245,237,214,.1);padding-top:24px;}
+.fmenu-foot a{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(245,237,214,.18);color:var(--cream);transition:all .2s;}
+.fmenu-foot a:hover{border-color:var(--cream);}
+.fmenu-foot a.fp{background:var(--pink);border-color:var(--pink);color:#fff;}
+.fmenu-hint{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;color:rgba(245,237,214,.15);margin-top:14px;}
+.ph{background:var(--ink);color:var(--cream);padding:56px 40px 44px;border-bottom:3px solid var(--cream);position:relative;overflow:hidden;}
+.ph-pat{position:absolute;top:0;right:0;width:36%;height:100%;pointer-events:none;opacity:.07;}
+.ph-kicker{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);display:block;margin-bottom:14px;position:relative;z-index:1;}
+.ph-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,112px);line-height:.88;letter-spacing:.02em;position:relative;z-index:1;margin-bottom:18px;color:var(--cream);}
+.ph-title em{color:var(--yellow);}
+.ph-desc{font-size:.95rem;line-height:1.8;color:rgba(245,237,214,.5);max-width:500px;position:relative;z-index:1;}
+.content{max-width:var(--w);margin:0 auto;padding:0 32px 80px;}
+.sec-hd{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:28px 0 14px;display:flex;align-items:center;gap:16px;border-bottom:2px solid var(--ink);}
+.sec-hd.y{color:var(--yellow);}.sec-hd.y::after{content:'';flex:1;height:2px;background:var(--yellow);}
+.sec-hd.p{color:var(--pink);}.sec-hd.p::after{content:'';flex:1;height:2px;background:var(--pink);}
+/* WRITING ACCORDION */
+.piece{border-bottom:1px solid rgba(12,8,0,.12);}
+.piece-hd{display:flex;align-items:center;gap:12px;padding:18px 0;transition:opacity .2s;}
+.piece-hd:hover{opacity:.75;}
+.ptag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;flex-shrink:0;}
+.tb{background:var(--yellow);color:var(--ink);}.tw{background:var(--green);color:var(--ink);}
+.piece-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);letter-spacing:.03em;flex:1;}
+.piece-arrow{width:30px;height:30px;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;font-size:18px;font-weight:700;line-height:1;}
+.piece.open .piece-arrow{background:var(--yellow);border-color:var(--yellow);color:var(--ink);transform:rotate(45deg);}
+.piece-body{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+.piece.open .piece-body{max-height:200px;}
+.piece-inner{padding:8px 0 24px;}
+.piece-desc{font-size:.84rem;line-height:1.85;color:rgba(12,8,0,.58);max-width:580px;margin-bottom:12px;}
+.piece-link{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid currentColor;padding-bottom:2px;display:inline-block;font-weight:700;}
+/* CAT ACCORDION */
+.cat{border-bottom:1px solid rgba(12,8,0,.1);}
+.cat-hd{display:flex;align-items:center;gap:12px;padding:16px 0;transition:opacity .2s;}
+.cat-hd:hover{opacity:.75;}
+.cat-dot{width:10px;height:10px;flex-shrink:0;}
+.cat-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);letter-spacing:.03em;flex:1;}
+.cat-count{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;color:rgba(12,8,0,.35);}
+.cat-arrow{width:28px;height:28px;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;font-size:16px;font-weight:700;line-height:1;}
+.cat.open .cat-arrow{transform:rotate(45deg);background:var(--pink);border-color:var(--pink);color:#fff;}
+.cat-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.cat.open .cat-body{max-height:500px;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding-bottom:20px;}
+.bt{background:var(--cream2);padding:16px 18px;border-left:3px solid transparent;transition:background .2s;}
+.bt:hover{background:white;}
+.bt-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.03em;margin-bottom:2px;}
+.bt-role{font-size:.78rem;color:rgba(12,8,0,.45);}
+.act-nav{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px;}
+.an{background:var(--ink);color:var(--cream);padding:24px 28px;display:flex;flex-direction:column;border-top:4px solid transparent;transition:background .2s;}
+.an:hover{background:#2a1a00;}
+.an.prev{border-top-color:var(--green);}.an.next{border-top-color:var(--pink);text-align:right;}
+.an-lbl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.3);margin-bottom:6px;}
+.an-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.2vw,28px);letter-spacing:.03em;}
+.an.next .an-title::after{content:' →';}.an.prev .an-title::before{content:'← ';}
+footer{background:var(--ink);padding:16px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ft{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.18);}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+@media(max-width:860px){.mast-nav{display:none;}.burger{display:flex;}.ph{padding:80px 20px 36px;}.content{padding:0 20px 60px;}.cat-grid{grid-template-columns:1fr 1fr;}.act-nav{grid-template-columns:1fr;}footer{padding:14px 20px;justify-content:center;text-align:center;}}
+@media(max-width:480px){.cat-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div id="cd"></div><div id="cr"></div>
+<header class="mast"><div class="mast-inner">
+  <a href="index.html" class="mast-logo">Durva <span>Dalal.</span></a>
+  <nav><ul class="mast-nav">
+    <li><a href="onscreen.html">On Screen</a></li>
+    <li><a href="onground.html">On the Ground</a></li>
+    <li><a href="onpage.html" class="cur">On the Page</a></li>
+    <li><a href="university.html">University</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul></nav>
+  <div class="mast-r">
+    <a href="index.html" class="mast-back">Home</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☀ / ☾</button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</div></header>
+<div class="fmenu" id="fmenu" aria-hidden="true">
+  <div class="fmenu-links"><a href="index.html">Home</a><a href="onscreen.html">On Screen</a><a href="onground.html">On the Ground</a><a href="onpage.html">On the Page</a><a href="university.html">University</a><a href="index.html#contact">Contact</a></div>
+  <div class="fmenu-foot"><a href="https://calendly.com/durvadalaluk/calls" target="_blank" rel="noopener" class="fp">Book a Call</a><a href="https://www.linkedin.com/in/durva-d-2850591bb/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:durvadalaluk@gmail.com">Email</a></div>
+  <p class="fmenu-hint">ESC or click outside to close</p>
+</div>
+<div class="ph">
+  <div class="ph-pat"><svg viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg" fill="none"><rect x="30" y="30" width="240" height="440" rx="4" stroke="#F0DC00" stroke-width="1.2"/><line x1="30" y1="80" x2="270" y2="80" stroke="#F0DC00" stroke-width=".8"/><line x1="50" y1="115" x2="240" y2="115" stroke="#F0DC00" stroke-width=".5" opacity=".6"/><line x1="50" y1="145" x2="235" y2="145" stroke="#F0DC00" stroke-width=".5" opacity=".6"/><line x1="50" y1="175" x2="220" y2="175" stroke="#F0DC00" stroke-width=".5" opacity=".5"/><line x1="50" y1="205" x2="238" y2="205" stroke="#F0DC00" stroke-width=".5" opacity=".5"/><line x1="50" y1="235" x2="215" y2="235" stroke="#F0DC00" stroke-width=".5" opacity=".4"/><line x1="50" y1="265" x2="228" y2="265" stroke="#F0DC00" stroke-width=".5" opacity=".35"/><line x1="80" y1="30" x2="80" y2="470" stroke="#F0DC00" stroke-width=".5" opacity=".3"/><circle cx="55" cy="55" r="12" stroke="#F0DC00" stroke-width=".7"/></svg></div>
+  <span class="ph-kicker">Act III — On the Page · Writing · Web Copy · Social · 2019–Now</span>
+  <h1 class="ph-title">Blogs.<br>Web Copy.<br><em>Words.</em></h1>
+  <p class="ph-desc">Four years of writing across industries. 30+ brands. A recipe blog running every week for three years. Writing as a daily practice, not just a job title.</p>
+</div>
+<div class="content">
+  <div class="sec-hd y rv">Long-form Writing and Web Copy</div>
+  <div class="piece rv"><div class="piece-hd" onclick="togP(this)"><span class="ptag tb">Cafe Blog · 2020</span><span class="piece-name">Baristog — The Beginning</span><span class="piece-arrow">+</span></div>
+    <div class="piece-body"><div class="piece-inner"><p class="piece-desc">A blog post written in 2020 for a local Manchester cafe — the very beginning of the journey. Before the MA, before the ad films, before any of it. A small piece of writing that started everything.</p><a href="https://baristog.blogspot.com/" target="_blank" rel="noopener" class="piece-link" style="color:var(--yellow);">Visit Blog</a></div></div></div>
+  
+  <div class="piece rv"><div class="piece-hd" onclick="togP(this)"><span class="ptag tb">Recipe Blog</span><span class="piece-name">Bite Bandits — Daily Recipes</span><span class="piece-arrow">+</span></div>
+    <div class="piece-body"><div class="piece-inner"><p class="piece-desc">A recipe blog I update when I can. Not daily, not on a schedule — just whenever there's something worth sharing. Started it for myself and it stuck. Warm, specific, and genuinely useful in a kitchen is the standard I hold it to.</p><a href="https://bitebandits.blogspot.com" target="_blank" rel="noopener" class="piece-link" style="color:var(--green);">Visit Blog</a></div></div></div>
+  <div class="piece rv"><div class="piece-hd" onclick="togP(this)"><span class="ptag tw">Website Content</span><span class="piece-name">Leam Music Academy — Full Web Copy</span><span class="piece-arrow">+</span></div>
+    <div class="piece-body"><div class="piece-inner"><p class="piece-desc">Full website content strategy for a next-gen music teaching platform. Single brief: futuristic, informative, captivating. Full ownership of layout decisions, tone, and content hierarchy. Site is live.</p><a href="https://www.leam.in" target="_blank" rel="noopener" class="piece-link" style="color:var(--green);">Visit leam.in</a></div></div></div>
+
+  <div class="sec-hd p rv" style="margin-top:8px;">Social Media Copywriting — 30+ Brands</div>
+  <p class="rv" style="font-size:.84rem;line-height:1.8;color:rgba(12,8,0,.55);max-width:580px;padding:12px 0 8px;">Written and curated social content for brands across industries. Click a category to see the brands.</p>
+
+  <div class="cat rv"><div class="cat-hd" onclick="togC(this)"><div class="cat-dot" style="background:var(--pink);"></div><span class="cat-name">Hospitality and Food</span><span class="cat-count">7 brands</span><span class="cat-arrow">+</span></div>
+    <div class="cat-body"><div class="cat-grid">
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">Bare Press</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">Cafe de Meet</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">BB Social</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">Park Inn by Radisson</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">West Indian Honey Company</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">Irenic Coffee House</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">Food Craft</h4><p class="bt-role">Social copywriting</p></div>
+    </div></div></div>
+  <div class="cat rv"><div class="cat-hd" onclick="togC(this)"><div class="cat-dot" style="background:var(--yellow);"></div><span class="cat-name">Travel</span><span class="cat-count">3 brands</span><span class="cat-arrow">+</span></div>
+    <div class="cat-body"><div class="cat-grid">
+      <div class="bt" style="border-left-color:var(--yellow);"><h4 class="bt-name">Miles and Frames</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--yellow);"><h4 class="bt-name">Classic World Holiday</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--yellow);"><h4 class="bt-name">Jesal Holidays</h4><p class="bt-role">Social copywriting</p></div>
+    </div></div></div>
+  <div class="cat rv"><div class="cat-hd" onclick="togC(this)"><div class="cat-dot" style="background:var(--green);"></div><span class="cat-name">Automotive</span><span class="cat-count">2 brands</span><span class="cat-arrow">+</span></div>
+    <div class="cat-body"><div class="cat-grid">
+      <div class="bt" style="border-left-color:var(--green);"><h4 class="bt-name">Presidency Skoda</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--green);"><h4 class="bt-name">Pramukh Tata</h4><p class="bt-role">Social copywriting</p></div>
+    </div></div></div>
+  <div class="cat rv"><div class="cat-hd" onclick="togC(this)"><div class="cat-dot" style="background:var(--pink);"></div><span class="cat-name">Sports</span><span class="cat-count">2 brands</span><span class="cat-arrow">+</span></div>
+    <div class="cat-body"><div class="cat-grid">
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">Kick Sports</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--pink);"><h4 class="bt-name">K2 Callisthenics</h4><p class="bt-role">Social copywriting</p></div>
+    </div></div></div>
+  <div class="cat rv"><div class="cat-hd" onclick="togC(this)"><div class="cat-dot" style="background:var(--yellow);"></div><span class="cat-name">Influencers</span><span class="cat-count">2 brands</span><span class="cat-arrow">+</span></div>
+    <div class="cat-body"><div class="cat-grid">
+      <div class="bt" style="border-left-color:var(--yellow);"><h4 class="bt-name">Manish Mehta</h4><p class="bt-role">Social copywriting</p></div>
+      <div class="bt" style="border-left-color:var(--yellow);"><h4 class="bt-name">Pooja Vyas</h4><p class="bt-role">Social copywriting</p></div>
+    </div></div></div>
+
+  <div class="act-nav rv">
+    <a href="onground.html" class="an prev"><span class="an-lbl">Act II</span><span class="an-title" style="color:var(--green);">On the Ground</span></a>
+    <a href="onscreen.html" class="an next"><span class="an-lbl">Act I</span><span class="an-title" style="color:var(--pink);">On Screen</span></a>
+  </div>
+</div>
+<footer><span class="ft">© 2026 Durva Dalal</span><a href="index.html" class="ft" style="color:var(--yellow);">← Home</a></footer>
+<script>
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');let mx=-100,my=-100,rx=-100,ry=-100;
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});(function t(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cd.style.left=mx+'px';cd.style.top=my+'px';cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(t);})();document.addEventListener('mousedown',()=>document.body.classList.add('clk'));document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});}
+const burger=document.getElementById('burger'),fmenu=document.getElementById('fmenu');
+function openM(){fmenu.classList.add('on');burger.classList.add('open');}function closeM(){fmenu.classList.remove('on');burger.classList.remove('open');}
+burger.addEventListener('click',e=>{e.stopPropagation();fmenu.classList.contains('on')?closeM():openM();});
+document.addEventListener('click',e=>{if(fmenu.classList.contains('on')&&!fmenu.contains(e.target)&&e.target!==burger)closeM();});
+fmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeM));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target);}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+function togP(h){const p=h.closest('.piece'),w=p.classList.contains('open');document.querySelectorAll('.piece.open').forEach(x=>x.classList.remove('open'));if(!w)p.classList.add('open');}
+function togC(h){const c=h.closest('.cat'),w=c.classList.contains('open');document.querySelectorAll('.cat.open').forEach(x=>x.classList.remove('open'));if(!w)c.classList.add('open');}
+
+// THEME
+let _dark=false;
+const _tb=document.getElementById('themeBtn');
+if(_tb)_tb.addEventListener('click',()=>{_dark=!_dark;document.body.style.background=_dark?'#0C0800':'';document.body.style.color=_dark?'#F5EDD6':'';});
+</script>
+</body></html>

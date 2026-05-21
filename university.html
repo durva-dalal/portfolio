@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>University Work — Durva Dalal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C0800;--cream:#F5EDD6;--cream2:#EDE4C6;--pink:#E8195A;--yellow:#F0DC00;--green:#00B84C;--gold:#C9961A;--w:1160px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+#cd,#cr{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+#cd{width:8px;height:8px;background:var(--gold);transition:width .15s,height .15s;}
+#cr{width:32px;height:32px;border:1.5px solid rgba(201,150,26,.5);transition:width .2s,height .2s;}
+body.hov #cd{width:3px;height:3px;}body.hov #cr{width:48px;height:48px;border-color:var(--gold);}
+body.clk #cd{background:var(--pink);}
+@media(hover:none){#cd,#cr{display:none;}body{cursor:auto;}}
+.mast{position:sticky;top:0;z-index:400;background:var(--ink);color:var(--cream);border-bottom:3px solid var(--cream);}
+.mast-inner{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;gap:16px;}
+.mast-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;color:var(--cream);flex-shrink:0;}
+.mast-logo span{color:var(--gold);}
+.mast-back{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,237,214,.4);display:flex;align-items:center;gap:6px;transition:color .2s;}
+.mast-back:hover{color:var(--yellow);}.mast-back::before{content:'←';}
+.mast-nav{display:flex;list-style:none;}
+.mast-nav a{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.4);padding:0 11px;height:52px;display:flex;align-items:center;border-left:1px solid rgba(245,237,214,.08);transition:color .2s;}
+.mast-nav a:hover,.mast-nav a.cur{color:var(--yellow);}
+.mast-nav li:last-child a{border-right:1px solid rgba(245,237,214,.08);}
+.theme-btn{font-family:"Space Mono",monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;border-left:1px solid rgba(245,237,214,.1);color:rgba(245,237,214,.35);padding:0 14px;height:52px;cursor:none;transition:color .2s;display:none;}
+.theme-btn:hover{color:var(--yellow);}
+.burger{background:none;border:none;padding:6px;display:none;flex-direction:column;gap:5px;cursor:none;}
+.burger span{display:block;width:20px;height:1.5px;background:var(--cream);transition:all .3s;}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+.fmenu{display:none;position:fixed;inset:0;z-index:390;background:var(--ink);flex-direction:column;justify-content:center;padding:60px 10vw;}
+.fmenu.on{display:flex;}
+.fmenu-links{display:flex;flex-direction:column;margin-bottom:48px;}
+.fmenu-links a{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,8vw,88px);letter-spacing:.04em;color:var(--cream);opacity:.12;line-height:1.08;transition:opacity .3s,color .3s;border-bottom:1px solid rgba(245,237,214,.06);padding:4px 0;}
+.fmenu-links a:hover{opacity:1;color:var(--yellow);}
+.fmenu-foot{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(245,237,214,.1);padding-top:24px;}
+.fmenu-foot a{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(245,237,214,.18);color:var(--cream);transition:all .2s;}
+.fmenu-foot a:hover{border-color:var(--cream);}
+.fmenu-foot a.fp{background:var(--pink);border-color:var(--pink);color:#fff;}
+.fmenu-hint{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;color:rgba(245,237,214,.15);margin-top:14px;}
+.ph{background:var(--ink);color:var(--cream);padding:56px 40px 44px;border-bottom:3px solid var(--cream);position:relative;overflow:hidden;}
+.ph-pat{position:absolute;top:0;right:0;width:40%;height:100%;pointer-events:none;opacity:.07;}
+.ph-kicker{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:14px;position:relative;z-index:1;}
+.ph-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,112px);line-height:.88;letter-spacing:.02em;position:relative;z-index:1;margin-bottom:18px;color:var(--cream);}
+.ph-title em{color:var(--gold);}
+.ph-desc{font-size:.95rem;line-height:1.8;color:rgba(245,237,214,.5);max-width:500px;position:relative;z-index:1;}
+/* CASE STUDIES */
+.content{max-width:var(--w);margin:0 auto;padding:0 32px 80px;}
+.case{border-bottom:3px solid var(--ink);margin-bottom:0;}
+.case:last-child{border-bottom:none;}
+.case-bar{background:var(--ink);color:var(--cream);padding:14px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(245,237,214,.08);margin:28px 0 0;}
+.case-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.5vw,30px);letter-spacing:.04em;}
+.case-tag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;padding:3px 8px;font-weight:700;}
+.case-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:28px 0 40px;}
+.cb-section{margin-bottom:24px;}
+.cb-lbl{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(12,8,0,.35);display:block;margin-bottom:8px;border-bottom:1px solid rgba(12,8,0,.1);padding-bottom:6px;}
+.cb-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;font-style:italic;margin-bottom:10px;line-height:1.25;}
+.cb-body{font-size:.84rem;line-height:1.85;color:rgba(12,8,0,.58);}
+.cb-body strong{color:var(--ink);}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:16px;}
+.metric{padding:14px 16px;}
+.metric-n{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;}
+.metric-l{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;margin-top:3px;opacity:.6;}
+.concepts{display:flex;flex-direction:column;gap:2px;margin-top:16px;}
+.concept{padding:14px 16px;border-left:3px solid transparent;background:var(--cream2);transition:background .2s;}
+.concept:hover{background:white;}
+.con-lbl{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:6px;font-weight:700;}
+.con-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;margin-bottom:5px;}
+.con-body{font-size:.82rem;line-height:1.7;color:rgba(12,8,0,.58);}
+.case-dl{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;padding:9px 18px;border:2px solid var(--ink);transition:all .2s;margin-top:20px;}
+.case-dl:hover{background:var(--ink);color:var(--cream);}
+/* ACT NAV */
+.act-nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:48px;}
+.an{background:var(--ink);color:var(--cream);padding:22px 24px;display:flex;flex-direction:column;border-top:4px solid transparent;transition:background .2s;}
+.an:hover{background:#2a1a00;}
+.an-lbl{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(245,237,214,.3);margin-bottom:5px;}
+.an-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,2vw,24px);letter-spacing:.03em;}
+footer{background:var(--ink);padding:16px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ft{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,237,214,.18);}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+@media(max-width:860px){.mast-nav{display:none;}.burger{display:flex;}.ph{padding:80px 20px 36px;}.content{padding:0 20px 60px;}.case-body{grid-template-columns:1fr;gap:0;}.metrics{grid-template-columns:1fr 1fr;}.act-nav{grid-template-columns:1fr;}footer{padding:14px 20px;justify-content:center;text-align:center;}}
+</style>
+</head>
+<body>
+<div id="cd"></div><div id="cr"></div>
+<header class="mast"><div class="mast-inner">
+  <a href="index.html" class="mast-logo">Durva <span>Dalal.</span></a>
+  <nav><ul class="mast-nav">
+    <li><a href="onscreen.html">On Screen</a></li>
+    <li><a href="onground.html">On the Ground</a></li>
+    <li><a href="onpage.html">On the Page</a></li>
+    <li><a href="university.html">University</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul></nav>
+  <div class="mast-r">
+    <a href="index.html" class="mast-back">Home</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☀ / ☾</button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</div></header>
+<div class="fmenu" id="fmenu" aria-hidden="true">
+  <div class="fmenu-links"><a href="index.html">Home</a><a href="onscreen.html">On Screen</a><a href="onground.html">On the Ground</a><a href="onpage.html">On the Page</a><a href="university.html">University</a><a href="index.html#contact">Contact</a></div>
+  <div class="fmenu-foot"><a href="https://calendly.com/durvadalaluk/calls" target="_blank" rel="noopener" class="fp">Book a Call</a><a href="https://www.linkedin.com/in/durva-d-2850591bb/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:durvadalaluk@gmail.com">Email</a></div>
+  <p class="fmenu-hint">ESC or click outside to close</p>
+</div>
+<div class="ph">
+  <div class="ph-pat"><svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" fill="none"><circle cx="320" cy="120" r="240" stroke="#C9961A" stroke-width=".8"/><circle cx="320" cy="120" r="170" stroke="#E8195A" stroke-width=".5"/><circle cx="320" cy="120" r="100" stroke="#C9961A" stroke-width=".5"/><circle cx="320" cy="120" r="40" stroke="#E8195A" stroke-width=".4"/><line x1="320" y1="-120" x2="320" y2="360" stroke="#C9961A" stroke-width=".4"/><line x1="80" y1="120" x2="560" y2="120" stroke="#C9961A" stroke-width=".4"/></svg></div>
+  <span class="ph-kicker">University Work · MA Advertising and Design · Leeds · 2024</span>
+  <h1 class="ph-title">Academic<br><em>Work.</em></h1>
+  <p class="ph-desc">Two projects from my MA. A coffee brand launch strategy and a telecoms campaign concept. Both required the same thing: genuine thinking, not just executions.</p>
+</div>
+<div class="content">
+
+  <div class="case rv" id="subko">
+    <div class="case-bar">
+      <span class="case-num" style="color:var(--gold);">01 — Subko: Beyond the Brew</span>
+      <span class="case-tag" style="background:var(--gold);color:#fff;">MA Dissertation · Creative Direction · 2024</span>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="cb-section"><span class="cb-lbl">The Brief</span><h3 class="cb-title">An Indian coffee brand wants into the UK</h3><p class="cb-body">Subko is a specialty coffee roastery founded in Mumbai in 2020. Known for authenticity and rapid growth in India, the brand wanted to penetrate the UK market. The challenge: the UK coffee market is worth <strong>£11.3 billion</strong>, dominated by Costa, Starbucks, Greggs, and Caffe Nero. India is the 8th largest coffee producer globally, yet has almost zero international brand recognition.</p></div>
+        <div class="cb-section"><span class="cb-lbl">The Research</span><h3 class="cb-title">Understand before you create</h3><p class="cb-body">PESTEL analysis, full competitor mapping across the top five UK coffee chains, a category map plotting accessibility against sustainability, and a semiotic analysis of how existing brands communicate. Key finding: <strong>the gap is high sustainability combined with high accessibility.</strong> Every sustainable brand is niche. Every accessible brand has weak sustainability credentials. Subko's opportunity was to own that intersection.</p>
+          <div class="metrics"><div class="metric" style="background:var(--gold);color:#fff;"><p class="metric-n">£11.3B</p><p class="metric-l">UK coffee market</p></div><div class="metric" style="background:var(--cream2);"><p class="metric-n">65%</p><p class="metric-l">UK consumers prioritising sustainability</p></div><div class="metric" style="background:var(--ink);color:var(--cream);"><p class="metric-n">8th</p><p class="metric-l" style="color:rgba(245,237,214,.5);">India's global coffee rank</p></div></div>
+        </div>
+        <a href="SubkoFinal2.pdf" target="_blank" rel="noopener" class="case-dl">Download Full PDF ↓</a>
+      </div>
+      <div>
+        <div class="cb-section"><span class="cb-lbl">Three Creative Routes Explored</span><h3 class="cb-title">Before deciding on direction</h3>
+          <div class="concepts">
+            <div class="concept" style="border-left-color:var(--gold);"><span class="con-lbl" style="color:var(--gold);">Concept 01</span><h4 class="con-title">"Brewed in Tradition"</h4><p class="con-body">Heritage-led. The journey of Indian coffee beans from plantation to cup, told through storytelling and experiential campus pop-ups.</p></div>
+            <div class="concept" style="border-left-color:var(--green);"><span class="con-lbl" style="color:var(--green);">Concept 02</span><h4 class="con-title">"Sustainability on the Go"</h4><p class="con-body">Eco-first. Sustainable sourcing, fair trade, eco-conscious packaging made accessible and affordable for students.</p></div>
+            <div class="concept" style="border-left-color:var(--pink);"><span class="con-lbl" style="color:var(--pink);">Final — "Beyond the Brew"</span><h4 class="con-title">Desi Brew by Subko</h4><p class="con-body">A sub-brand for the UK university market. Custom logotype blending Latin and Devanagari scripts. Earthy palette. Indian folk-art patterns. Packaging, social, campus launch executions, a collapsible reusable mug, and seed-embedded takeaway cups. Slogan: "Soil to Soul."</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case rv" id="o2" style="margin-top:40px;">
+    <div class="case-bar">
+      <span class="case-num" style="color:#0066CC;">02 — O2 Telefonica: Weather Hijack</span>
+      <span class="case-tag" style="background:#0066CC;color:#fff;">MA Module · Campaign Strategy · 2024</span>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="cb-section"><span class="cb-lbl">The Brief</span><h3 class="cb-title">Get O2 noticed by people who scroll past everything</h3><p class="cb-body">Pick a telecoms brand, identify a real problem it faces, develop a creative campaign solution using at least three media channels. I chose O2. The problem was specific: <strong>O2's existing marketing was successfully reaching older demographics but actively alienating 16 to 30 year olds.</strong> Raise awareness without producing another forgettable telecoms ad.</p></div>
+        <div class="cb-section"><span class="cb-lbl">The Strategic Insight</span><h3 class="cb-title">Weather is the only thing everyone shares in real time</h3><p class="cb-body">Young people tune out static advertising. They engage with things that feel relevant to the exact moment they are in. <strong>Weather is the most universally shared real-time experience.</strong> Everyone in a city experiences the same weather simultaneously. Perfect vehicle for a brand whose platform is "Together, Everywhere."</p>
+          <div class="metrics"><div class="metric" style="background:#0066CC;color:#fff;"><p class="metric-n">16–30</p><p class="metric-l" style="color:rgba(255,255,255,.7);">Target age range</p></div><div class="metric" style="background:var(--cream2);"><p class="metric-n">3</p><p class="metric-l">Media channels used</p></div><div class="metric" style="background:var(--ink);color:var(--cream);"><p class="metric-n">OOH</p><p class="metric-l" style="color:rgba(245,237,214,.5);">Primary channel</p></div></div>
+        </div>
+        <a href="TELECOMMUNICATION_PORTFOLIO.pdf" target="_blank" rel="noopener" class="case-dl">Download Full PDF ↓</a>
+      </div>
+      <div>
+        <div class="cb-section"><span class="cb-lbl">The Campaign: Three Channels, One Idea</span><h3 class="cb-title">Together, Everywhere</h3>
+          <div class="concepts">
+            <div class="concept" style="border-left-color:#0066CC;background:rgba(0,102,204,.05);"><span class="con-lbl" style="color:#0066CC;">Channel 01 — Primary</span><h4 class="con-title">Weather-Reactive Digital OOH</h4><p class="con-body">Digital billboards in high-footfall urban areas and near university campuses. Powered by live weather API data. Copy changes automatically based on temperature, precipitation, and conditions. Always current. Always relevant.</p></div>
+            <div class="concept" style="border-left-color:var(--green);"><span class="con-lbl" style="color:var(--green);">Channel 02 — Extension</span><h4 class="con-title">Social Media Mirror</h4><p class="con-body">Time-stamped social posts that mirror the exact billboard copy for the conditions at time of posting. The brand is present in the same moment as the audience, not broadcasting at them.</p></div>
+            <div class="concept" style="border-left-color:var(--yellow);"><span class="con-lbl" style="color:var(--gold);">Channel 03 — Supporting</span><h4 class="con-title">Weather Hijack</h4><p class="con-body">Secondary executions inside contexts users already pay attention to: weather app interfaces, transport screens, commuter environments. All copy written by me.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="act-nav rv">
+    <a href="onscreen.html" class="an" style="border-top-color:var(--pink);"><span class="an-lbl">Act I</span><span class="an-title" style="color:var(--pink);">← On Screen</span></a>
+    <a href="onground.html" class="an" style="border-top-color:var(--green);"><span class="an-lbl">Act II</span><span class="an-title" style="color:var(--green);">On the Ground →</span></a>
+    <a href="onpage.html" class="an" style="border-top-color:var(--yellow);"><span class="an-lbl">Act III</span><span class="an-title" style="color:var(--yellow);">On the Page →</span></a>
+  </div>
+</div>
+<footer><span class="ft">© 2026 Durva Dalal</span><a href="index.html" class="ft" style="color:var(--gold);">← Home</a></footer>
+<script>
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');let mx=-100,my=-100,rx=-100,ry=-100;
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});(function t(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cd.style.left=mx+'px';cd.style.top=my+'px';cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(t);})();document.addEventListener('mousedown',()=>document.body.classList.add('clk'));document.addEventListener('mouseup',()=>document.body.classList.remove('clk'));document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});}
+const burger=document.getElementById('burger'),fmenu=document.getElementById('fmenu');
+function openM(){fmenu.classList.add('on');burger.classList.add('open');}function closeM(){fmenu.classList.remove('on');burger.classList.remove('open');}
+burger.addEventListener('click',e=>{e.stopPropagation();fmenu.classList.contains('on')?closeM():openM();});
+document.addEventListener('click',e=>{if(fmenu.classList.contains('on')&&!fmenu.contains(e.target)&&e.target!==burger)closeM();});
+fmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeM));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target);}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+
+// THEME
+let _dark=false;
+const _tb=document.getElementById('themeBtn');
+if(_tb)_tb.addEventListener('click',()=>{_dark=!_dark;document.body.style.background=_dark?'#0C0800':'';document.body.style.color=_dark?'#F5EDD6':'';});
+</script>
+</body></html>
