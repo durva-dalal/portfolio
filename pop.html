@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durva Dalal: marketer, writer, storyteller</title>
+<meta name="description" content="Durva Dalal is a Manchester marketer who writes for film, email and web. Scripts for ICICI Foundation and the Gates Foundation, email programmes for a 30,000-student membership.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#000000; --red:#e4002b; --yellow:#ffe600; --blue:#1f3bff; --pink:#ff8ad1;
+  --display:'Bowlby One','Arial Black',Impact,sans-serif;
+  --body:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --edge:4px solid var(--ink);
+  --pad:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--pad)}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:8px;top:8px;background:var(--yellow);padding:8px 12px;z-index:99;border:var(--edge)}
+
+/* masthead */
+.mast{border-bottom:var(--edge)}
+.mast-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:10px 0;font-weight:600;font-size:14px;border-bottom:2px solid var(--ink)}
+.mast-name{font-family:var(--display);font-size:clamp(44px,10.5vw,148px);line-height:.95;text-align:center;padding:14px 0 10px;letter-spacing:-.01em}
+.mast-name span{display:inline-block;background:var(--ink);color:var(--yellow);padding:0 .18em;transform:rotate(-1.5deg)}
+.mast-nav{display:flex;flex-wrap:wrap;border-top:var(--edge)}
+.mast-nav a{flex:1 1 160px;text-align:center;padding:12px 8px;font-weight:800;text-decoration:none;border-right:2px solid var(--ink);background:var(--paper)}
+.mast-nav a:last-child{border-right:0;background:var(--red);color:#fff}
+.mast-nav a:hover{background:var(--yellow);color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--pad);padding:clamp(28px,5vw,64px) 0;align-items:center}
+.flash{display:inline-block;background:var(--red);color:#fff;font-family:var(--display);padding:6px 14px;transform:rotate(-3deg);border:var(--edge);box-shadow:6px 6px 0 var(--ink);font-size:clamp(18px,2.4vw,28px)}
+.headline{font-family:var(--display);font-size:clamp(40px,7.6vw,112px);line-height:.98;margin:20px 0 20px;letter-spacing:-.015em}
+.headline .slab{display:inline-block;padding:0 .12em;border:var(--edge);box-shadow:8px 8px 0 var(--ink);margin:0 .08em .12em 0}
+.slab.y{background:var(--yellow)} .slab.r{background:var(--red);color:#fff} .slab.b{background:var(--blue);color:#fff}
+.slab:nth-child(1){transform:rotate(-2deg)} .slab:nth-child(2){transform:rotate(1.5deg)} .slab:nth-child(3){transform:rotate(-1deg)}
+.deck{font-size:clamp(18px,2vw,24px);font-weight:600;max-width:36ch}
+.byline{margin-top:14px;font-size:15px;font-weight:600}
+.photo{position:relative;transform:rotate(2deg)}
+.photo-frame{border:var(--edge);box-shadow:12px 12px 0 var(--ink);background:var(--red);position:relative;overflow:hidden;aspect-ratio:4/5}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(1) contrast(1.25);mix-blend-mode:multiply;display:block}
+.photo-frame::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#000 1.4px,transparent 1.8px);background-size:9px 9px;mix-blend-mode:soft-light;opacity:.55;pointer-events:none}
+.sticker{position:absolute;z-index:2;font-family:var(--display);border:var(--edge);box-shadow:5px 5px 0 var(--ink);padding:8px 14px;line-height:1.05;text-align:center}
+.sticker.s1{left:-18px;bottom:36px;background:var(--yellow);transform:rotate(-8deg);font-size:clamp(16px,1.8vw,22px)}
+.sticker.s2{right:-14px;top:-18px;background:var(--pink);transform:rotate(7deg);font-size:clamp(14px,1.5vw,18px)}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--yellow);border-block:var(--edge);overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;padding:12px 0;font-family:var(--display);font-size:clamp(16px,2vw,24px);animation:slide 40s linear infinite}
+.ticker-track span{padding:0 28px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;border:var(--edge);margin:clamp(32px,5vw,56px) 0}
+.num{padding:20px 18px;border-right:var(--edge);border-bottom:var(--edge)}
+.num b{display:block;font-family:var(--display);font-size:clamp(28px,2.7vw,38px);line-height:1.05;overflow-wrap:anywhere}
+.num span{font-weight:600;font-size:15px;display:block;margin-top:8px}
+.num:nth-child(1){background:var(--yellow)} .num:nth-child(2){background:var(--pink)} .num:nth-child(3){background:var(--paper)} .num:nth-child(4){background:var(--yellow)} .num:nth-child(5){background:var(--pink)}
+
+/* stories */
+.sec-title{font-family:var(--display);font-size:clamp(30px,4.5vw,60px);line-height:1;margin-bottom:24px}
+.sec-title mark{background:var(--red);color:#fff;padding:0 .15em;border:var(--edge);display:inline-block;transform:rotate(-1.5deg)}
+.stories{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:56px}
+.story{border:var(--edge);padding:24px;background:var(--paper);box-shadow:8px 8px 0 var(--ink);display:flex;flex-direction:column;gap:10px}
+.story h3{font-family:var(--display);font-size:clamp(22px,2.6vw,36px);line-height:1.05}
+.story p{max-width:60ch}
+.story .tag{align-self:flex-start;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:2px 10px}
+.story .more{margin-top:auto;font-weight:800;text-decoration-thickness:3px;text-underline-offset:4px}
+.s-lead{grid-column:span 7;background:var(--yellow)}
+.s-lead h3{font-size:clamp(28px,3.6vw,52px)}
+.s-a{grid-column:span 5;background:var(--blue);color:#fff}
+.s-a .tag{background:var(--yellow);color:var(--ink)}
+.s-b{grid-column:span 4;background:var(--pink)}
+.s-c{grid-column:span 4}
+.s-d{grid-column:span 4;background:var(--red);color:#fff}
+.s-d .tag{background:var(--yellow);color:var(--ink)}
+
+/* currently + acts */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:56px}
+.classified{border:var(--edge);border-style:dashed;padding:24px;background:var(--paper)}
+.classified h3{font-family:var(--display);font-size:clamp(24px,3vw,40px);line-height:1.05;margin-bottom:10px}
+.classified ul{list-style:none;display:grid;gap:8px}
+.classified li{padding-left:28px;position:relative}
+.classified li::before{content:"";position:absolute;left:0;top:.5em;width:14px;height:14px;background:var(--red);border:3px solid var(--ink);transform:rotate(45deg)}
+.acts{display:grid;gap:14px}
+.act{display:flex;justify-content:space-between;align-items:center;gap:12px;border:var(--edge);padding:16px 20px;text-decoration:none;font-family:var(--display);font-size:clamp(20px,2.4vw,32px);box-shadow:6px 6px 0 var(--ink);transition:transform .15s}
+.act small{font-family:var(--body);font-weight:600;font-size:15px;display:block}
+.act:hover{transform:translate(-3px,-3px)}
+.act:nth-child(1){background:var(--red);color:#fff} .act:nth-child(2){background:var(--yellow)} .act:nth-child(3){background:var(--blue);color:#fff} .act:nth-child(4){background:var(--pink)}
+
+/* contact */
+.wanted{background:var(--ink);color:#fff;padding:clamp(32px,6vw,72px) 0;border-top:var(--edge)}
+.wanted-in{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--pad);align-items:center}
+.wanted h2{font-family:var(--display);font-size:clamp(38px,7vw,100px);line-height:.98;color:var(--yellow)}
+.wanted p{font-size:20px;margin-top:14px;max-width:34ch}
+.btns{display:grid;gap:14px}
+.btn{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-size:clamp(18px,2vw,26px);padding:16px 20px;border:4px solid #fff;box-shadow:6px 6px 0 var(--yellow);background:var(--red);color:#fff}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.btn:hover{background:var(--yellow);color:var(--ink)}
+footer{background:var(--yellow);border-top:var(--edge);padding:16px 0;font-weight:600;font-size:15px}
+
+/* one load moment */
+.headline .slab{animation:slam .5s cubic-bezier(.2,1.4,.4,1) both}
+.headline .slab:nth-child(2){animation-delay:.12s} .headline .slab:nth-child(3){animation-delay:.24s}
+@keyframes slam{from{opacity:0;transform:scale(1.5) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.headline .slab,.ticker-track{animation:none}.act{transition:none}}
+
+@media (max-width:900px){
+  .hero,.duo,.wanted-in{grid-template-columns:1fr}
+  .s-lead,.s-a,.s-b,.s-c,.s-d{grid-column:span 12}
+  .photo{max-width:420px;margin:0 auto}
+  .sticker.s1{left:-6px}.sticker.s2{right:-6px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-top"><span>Manchester edition</span><span>Autumn 2026</span><span>Price: one good brief</span></div>
+    <h1 class="mast-name"><span>Durva Dalal</span></h1>
+  </div>
+  <nav class="mast-nav" aria-label="Sections">
+    <a href="onscreen.html">On screen</a>
+    <a href="onground.html">On the ground</a>
+    <a href="onpage.html">On the page</a>
+    <a href="university.html">University</a>
+    <a href="#contact">Book a call</a>
+  </nav>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <section class="hero" aria-labelledby="lead">
+    <div>
+      <span class="flash">Front page news</span>
+      <h2 class="headline" id="lead"><span class="slab y">Tiger's story</span> <span class="slab r">hits 2.6M</span> <span class="slab b">views</span></h2>
+      <p class="deck">Durva Dalal came up with the idea and wrote the script for the ICICI Foundation conservation film. She is a marketing coordinator based in Manchester.</p>
+      <p class="byline">Scripts for film. Email for 30,000 students. Words for the web.</p>
+    </div>
+    <div class="photo">
+      <span class="sticker s2">Open for work</span>
+      <div class="photo-frame"><img src="durva.jpg" alt="Portrait of Durva Dalal with a city skyline behind her"></div>
+      <span class="sticker s1">Available from December 2026</span>
+    </div>
+  </section>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track"><span>Gates Foundation film reaches 100,000+</span><span>Email opens up from 26% to 33%</span><span>Digital screens go from 2 to all campuses</span><span>Campaign wins FoxGlove '22</span><span>Gates Foundation film reaches 100,000+</span><span>Email opens up from 26% to 33%</span><span>Digital screens go from 2 to all campuses</span><span>Campaign wins FoxGlove '22</span></div>
+</div>
+
+<div class="wrap">
+  <section class="nums" aria-label="Numbers">
+    <div class="num"><b>2.6M</b><span>views on the ICICI Foundation tiger film</span></div>
+    <div class="num"><b>100,000+</b><span>reach on the Gates Foundation TB film</span></div>
+    <div class="num"><b>26 to 33%</b><span>email opens at Salford SU, segmented sends about 38%</span></div>
+    <div class="num"><b>200+</b><span>students joined a Facebook group within a month</span></div>
+    <div class="num"><b>30,000</b><span>students in the audience I write for</span></div>
+  </section>
+
+  <h2 class="sec-title"><mark>Today's</mark> stories</h2>
+  <section class="stories">
+    <article class="story s-lead">
+      <span class="tag">Film · ICICI Foundation</span>
+      <h3>One tiger explains 56 forests</h3>
+      <p>ICICI Foundation protects 56 forests and tiger reserves. The film tells that scale through one female tiger, ST9, at Sariska. I came up with the idea and wrote the script, helped the producer with casting and costume, and made small changes in post-production. It reached 2.6M views and runs across ICICI Foundation's internal and external communications.</p>
+      <a class="more" href="onscreen.html">Read the case file</a>
+    </article>
+    <article class="story s-a">
+      <span class="tag">Film · Gates Foundation</span>
+      <h3>TB is curable. The story is about the people around it.</h3>
+      <p>I wrote the script for the India TB-free film. Every claim had to survive review by people who knew the epidemiology. The Gates Foundation India team used it for programme communications, and it reached 100,000+.</p>
+      <a class="more" href="onscreen.html">Watch it</a>
+    </article>
+    <article class="story s-b">
+      <span class="tag">Email · Salford SU</span>
+      <h3>Opens climb from 26% to 33%</h3>
+      <p>I moved the programme from full-list sends to segmented sends by course and cohort in MSL. On elections day I ran eight targeted emails: participation reached about 4,600 against a 4,500 target.</p>
+      <a class="more" href="onground.html">See how</a>
+    </article>
+    <article class="story s-c">
+      <span class="tag">Screens · Salford SU</span>
+      <h3>From 2 screens to every campus</h3>
+      <p>My idea and plan. The SU's digital screens now show on all campuses, built in Illustrator and Xibo.</p>
+      <a class="more" href="onground.html">See the plan</a>
+    </article>
+    <article class="story s-d">
+      <span class="tag">Campaign · Gamezy</span>
+      <h3>"App Badlo" wins FoxGlove '22</h3>
+      <p>I contributed to the scripts as part of the writing team. The IPL campaign aired on TV and OTT across two seasons.</p>
+      <a class="more" href="onscreen.html">Watch the films</a>
+    </article>
+  </section>
+
+  <section class="duo" aria-label="Currently and sections">
+    <div class="classified">
+      <h3>Currently: Salford Students' Union</h3>
+      <ul>
+        <li>Marketing Coordinator since 2025</li>
+        <li>I line manage 4 to 5 part-time student staff and sign off their work</li>
+        <li>1 to 2 student activations a month, 100 to 150 students each</li>
+        <li>MA Advertising and Design, University of Leeds</li>
+      </ul>
+    </div>
+    <nav class="acts" aria-label="Work">
+      <a class="act" href="onscreen.html"><span>On screen<small>Film scripts and campaigns</small></span><span aria-hidden="true">&gt;</span></a>
+      <a class="act" href="onground.html"><span>On the ground<small>Email, events and screens</small></span><span aria-hidden="true">&gt;</span></a>
+      <a class="act" href="onpage.html"><span>On the page<small>Web copy and writing</small></span><span aria-hidden="true">&gt;</span></a>
+      <a class="act" href="university.html"><span>University<small>Two MA projects</small></span><span aria-hidden="true">&gt;</span></a>
+    </nav>
+  </section>
+</div>
+
+<section class="wanted" id="contact">
+  <div class="wrap wanted-in">
+    <div>
+      <h2>Wanted: a brief worth telling</h2>
+      <p>I'm based in Manchester and available from December 2026.</p>
+    </div>
+    <div class="btns">
+      <a class="btn" href="https://calendly.com/durvadalaluk/calls" target="_blank" rel="noopener">Book a call</a>
+      <a class="btn alt" href="mailto:durvadalaluk@gmail.com">Email Durva</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/durva-d-2850591bb/" target="_blank" rel="noopener">Find me on LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">© 2026 Durva Dalal · Manchester, UK</div></footer>
+</body>
+</html>
