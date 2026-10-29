@@ -59,7 +59,8 @@ a{color:inherit}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* numbers */
-.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;border:var(--edge);margin:clamp(32px,5vw,56px) 0}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:var(--edge);margin:clamp(32px,5vw,56px) 0}
+@media(min-width:1000px){.nums{grid-template-columns:repeat(5,1fr)}}
 .num{padding:20px 18px;border-right:var(--edge);border-bottom:var(--edge)}
 .num b{display:block;font-family:var(--display);font-size:clamp(28px,2.7vw,38px);line-height:1.05;overflow-wrap:anywhere}
 .num span{font-weight:600;font-size:15px;display:block;margin-top:8px}
