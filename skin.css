@@ -137,3 +137,18 @@ footer{background:var(--gold);border-top:var(--T)}
 .metric{background:var(--pink)!important;color:var(--ink)!important}
 .metric *{color:var(--ink)!important;opacity:1!important}
 .metric:nth-child(2){background:var(--blue)!important}.metric:nth-child(3){background:var(--grn)!important}
+
+/* small motion: hover and tap feedback, one pop-in for the header stats */
+.proj,.piece,.cat,.strip,.an,.pl,.bt,.concept,.metric,.case-dl,.mast-r1-nav a{transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.proj:hover,.piece:hover,.cat:hover,.strip:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--ink)}
+.an:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.pl:hover,.case-dl:hover{transform:rotate(-2deg) scale(1.05)}
+.bt:hover,.concept:hover{transform:translateX(6px)}
+.metric:hover{transform:rotate(-2deg) scale(1.04)}
+.nameplate{transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.nameplate:hover{transform:rotate(1.5deg) scale(1.04)}
+.ph-stats>div{animation:popin .5s cubic-bezier(.3,1.6,.5,1) both}
+.ph-stats>div:nth-child(2){animation-delay:.12s}.ph-stats>div:nth-child(3){animation-delay:.24s}
+.ph-kicker{animation:wiggle .7s ease .3s both}
+@keyframes popin{from{transform:scale(.6) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes wiggle{0%{transform:rotate(-2deg)}30%{transform:rotate(3deg)}60%{transform:rotate(-4deg)}100%{transform:rotate(-2deg)}}

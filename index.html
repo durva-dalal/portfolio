@@ -120,6 +120,14 @@ footer{background:var(--yellow);border-top:var(--edge);padding:16px 0;font-weigh
   .photo{max-width:420px;margin:0 auto}
   .sticker.s1{left:-6px}.sticker.s2{right:-6px}
 }
+.story,.num{transition:transform .18s ease,box-shadow .18s ease}
+.story:hover{transform:translate(-3px,-3px) rotate(-.4deg);box-shadow:11px 11px 0 var(--ink)}
+.num:hover{transform:rotate(-2deg) scale(1.05);z-index:2}
+.btn{transition:transform .15s ease,background .15s ease}.btn:hover{transform:rotate(-1.5deg) scale(1.03)}
+.sticker{animation:bob 3s ease-in-out infinite}
+.sticker.s2{animation-delay:-1.5s}
+@keyframes bob{50%{translate:0 -6px}}
+@media(prefers-reduced-motion:reduce){.sticker{animation:none}.story:hover,.num:hover,.btn:hover{transform:none}}
 </style>
 </head>
 <body>
