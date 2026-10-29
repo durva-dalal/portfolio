@@ -152,3 +152,6 @@ footer{background:var(--gold);border-top:var(--T)}
 .ph-kicker{animation:wiggle .7s ease .3s both}
 @keyframes popin{from{transform:scale(.6) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
 @keyframes wiggle{0%{transform:rotate(-2deg)}30%{transform:rotate(3deg)}60%{transform:rotate(-4deg)}100%{transform:rotate(-2deg)}}
+.bt-name a{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px;text-decoration-color:var(--red)}
+.bt-name a::after{content:" \2197";font-family:var(--M)}
+.bt-name a:hover{background:var(--gold)}
