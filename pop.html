@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#ffffff; --ink:#000000; --red:#e4002b; --yellow:#ffe600; --blue:#1f3bff; --pink:#ff8ad1;
+  --paper:#fff8ee; --ink:#1a1a1a; --red:#ff9db8; --yellow:#ffe48a; --blue:#a8d4ff; --pink:#ffc6e3; --lilac:#d9c8ff;
   --display:'Bowlby One','Arial Black',Impact,sans-serif;
   --body:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
   --edge:4px solid var(--ink);
@@ -32,15 +32,15 @@ a{color:inherit}
 .mast-name span{display:inline-block;background:var(--ink);color:var(--yellow);padding:0 .18em;transform:rotate(-1.5deg)}
 .mast-nav{display:flex;flex-wrap:wrap;border-top:var(--edge)}
 .mast-nav a{flex:1 1 160px;text-align:center;padding:12px 8px;font-weight:800;text-decoration:none;border-right:2px solid var(--ink);background:var(--paper)}
-.mast-nav a:last-child{border-right:0;background:var(--red);color:#fff}
+.mast-nav a:last-child{border-right:0;background:var(--red);color:var(--ink)}
 .mast-nav a:hover{background:var(--yellow);color:var(--ink)}
 
 /* hero */
 .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--pad);padding:clamp(28px,5vw,64px) 0;align-items:center}
-.flash{display:inline-block;background:var(--red);color:#fff;font-family:var(--display);padding:6px 14px;transform:rotate(-3deg);border:var(--edge);box-shadow:6px 6px 0 var(--ink);font-size:clamp(18px,2.4vw,28px)}
+.flash{display:inline-block;background:var(--red);color:var(--ink);font-family:var(--display);padding:6px 14px;transform:rotate(-3deg);border:var(--edge);box-shadow:6px 6px 0 var(--ink);font-size:clamp(18px,2.4vw,28px)}
 .headline{font-family:var(--display);font-size:clamp(40px,7.6vw,112px);line-height:.98;margin:20px 0 20px;letter-spacing:-.015em}
 .headline .slab{display:inline-block;padding:0 .12em;border:var(--edge);box-shadow:8px 8px 0 var(--ink);margin:0 .08em .12em 0}
-.slab.y{background:var(--yellow)} .slab.r{background:var(--red);color:#fff} .slab.b{background:var(--blue);color:#fff}
+.slab.y{background:var(--yellow)} .slab.r{background:var(--red);color:var(--ink)} .slab.b{background:var(--blue);color:var(--ink)}
 .slab:nth-child(1){transform:rotate(-2deg)} .slab:nth-child(2){transform:rotate(1.5deg)} .slab:nth-child(3){transform:rotate(-1deg)}
 .deck{font-size:clamp(18px,2vw,24px);font-weight:600;max-width:36ch}
 .byline{margin-top:14px;font-size:15px;font-weight:600}
@@ -68,20 +68,20 @@ a{color:inherit}
 
 /* stories */
 .sec-title{font-family:var(--display);font-size:clamp(30px,4.5vw,60px);line-height:1;margin-bottom:24px}
-.sec-title mark{background:var(--red);color:#fff;padding:0 .15em;border:var(--edge);display:inline-block;transform:rotate(-1.5deg)}
+.sec-title mark{background:var(--red);color:var(--ink);padding:0 .15em;border:var(--edge);display:inline-block;transform:rotate(-1.5deg)}
 .stories{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:56px}
 .story{border:var(--edge);padding:24px;background:var(--paper);box-shadow:8px 8px 0 var(--ink);display:flex;flex-direction:column;gap:10px}
 .story h3{font-family:var(--display);font-size:clamp(22px,2.6vw,36px);line-height:1.05}
 .story p{max-width:60ch}
-.story .tag{align-self:flex-start;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:2px 10px}
+.story .tag{align-self:flex-start;background:var(--ink);color:var(--paper);font-weight:800;font-size:14px;padding:2px 10px}
 .story .more{margin-top:auto;font-weight:800;text-decoration-thickness:3px;text-underline-offset:4px}
 .s-lead{grid-column:span 7;background:var(--yellow)}
 .s-lead h3{font-size:clamp(28px,3.6vw,52px)}
-.s-a{grid-column:span 5;background:var(--blue);color:#fff}
+.s-a{grid-column:span 5;background:var(--blue);color:var(--ink)}
 .s-a .tag{background:var(--yellow);color:var(--ink)}
 .s-b{grid-column:span 4;background:var(--pink)}
 .s-c{grid-column:span 4}
-.s-d{grid-column:span 4;background:var(--red);color:#fff}
+.s-d{grid-column:span 4;background:var(--red);color:var(--ink)}
 .s-d .tag{background:var(--yellow);color:var(--ink)}
 
 /* currently + acts */
@@ -95,15 +95,15 @@ a{color:inherit}
 .act{display:flex;justify-content:space-between;align-items:center;gap:12px;border:var(--edge);padding:16px 20px;text-decoration:none;font-family:var(--display);font-size:clamp(20px,2.4vw,32px);box-shadow:6px 6px 0 var(--ink);transition:transform .15s}
 .act small{font-family:var(--body);font-weight:600;font-size:15px;display:block}
 .act:hover{transform:translate(-3px,-3px)}
-.act:nth-child(1){background:var(--red);color:#fff} .act:nth-child(2){background:var(--yellow)} .act:nth-child(3){background:var(--blue);color:#fff} .act:nth-child(4){background:var(--pink)}
+.act:nth-child(1){background:var(--red);color:var(--ink)} .act:nth-child(2){background:var(--yellow)} .act:nth-child(3){background:var(--blue);color:var(--ink)} .act:nth-child(4){background:var(--pink)}
 
 /* contact */
-.wanted{background:var(--ink);color:#fff;padding:clamp(32px,6vw,72px) 0;border-top:var(--edge)}
+.wanted{background:var(--ink);color:var(--paper);padding:clamp(32px,6vw,72px) 0;border-top:var(--edge)}
 .wanted-in{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--pad);align-items:center}
 .wanted h2{font-family:var(--display);font-size:clamp(38px,7vw,100px);line-height:.98;color:var(--yellow)}
 .wanted p{font-size:20px;margin-top:14px;max-width:34ch}
 .btns{display:grid;gap:14px}
-.btn{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-size:clamp(18px,2vw,26px);padding:16px 20px;border:4px solid #fff;box-shadow:6px 6px 0 var(--yellow);background:var(--red);color:#fff}
+.btn{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-size:clamp(18px,2vw,26px);padding:16px 20px;border:4px solid #fff;box-shadow:6px 6px 0 var(--yellow);background:var(--red);color:var(--ink)}
 .btn.alt{background:var(--paper);color:var(--ink)}
 .btn:hover{background:var(--yellow);color:var(--ink)}
 footer{background:var(--yellow);border-top:var(--edge);padding:16px 0;font-weight:600;font-size:15px}
@@ -150,7 +150,6 @@ footer{background:var(--yellow);border-top:var(--edge);padding:16px 0;font-weigh
     <div class="photo">
       <span class="sticker s2">Open for work</span>
       <div class="photo-frame"><img src="durva.jpg" alt="Portrait of Durva Dalal with a city skyline behind her"></div>
-      <span class="sticker s1">Available from December 2026</span>
     </div>
   </section>
 </div>
@@ -225,7 +224,7 @@ footer{background:var(--yellow);border-top:var(--edge);padding:16px 0;font-weigh
   <div class="wrap wanted-in">
     <div>
       <h2>Wanted: a brief worth telling</h2>
-      <p>I'm based in Manchester and available from December 2026.</p>
+      <p>I'm based in Manchester and open to work.</p>
     </div>
     <div class="btns">
       <a class="btn" href="https://calendly.com/durvadalaluk/calls" target="_blank" rel="noopener">Book a call</a>
